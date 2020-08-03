@@ -1,0 +1,32 @@
+{
+  "name": "raid-bot-api-js",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js",
+    "dev": "cross-env NODE_ENV=development nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dylanaz45/raid-bot-api-js.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dylanaz45/raid-bot-api-js/issues"
+  },
+  "homepage": "https://github.com/dylanaz45/raid-bot-api-js#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "dotenv": "^8.2.0",
+    "mongodb": "^3.5.9",
+    "jsonwebtoken": "^8.5.1",
+    "nodemon": "^2.0.4",
+    "bcrypt": "^5.0.0",
+    "body-parser": "^1.19.0",
+    "mongoose": "^5.9.26",
+    "cross-env": "^7.0.2"
+  }
+}
