@@ -5,6 +5,15 @@ const jwt = require("jsonwebtoken");
 
 MongoConnection.connectToMongo();
 
+/**
+ * Route: /start
+ * Endpoint: POST /start
+ * URL Parameters: token (JSON Web Token used for authentication),
+ *                 _id (the ID of the user who is registering raid),
+ *                 name (the name of the user),
+ *                 den (the den the user is hosting)
+ * Inserts a document into the database, which allows the user to register their session
+ */
 router.post('/', (req, res) => {
     const token = req.query.token;
     jwt.verify(token, process.env.JWT_SECRET, function (err){

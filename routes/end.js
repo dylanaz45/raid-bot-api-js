@@ -5,6 +5,12 @@ const jwt = require("jsonwebtoken");
 
 MongoConnection.connectToMongo();
 
+/**
+ * Route: /end
+ * Endpoint: DELETE /end
+ * URL Parameters: token (JSON Web Token used for authentication), _id (the ID of the user whose raid is to be terminated)
+ * Deletes an existing raid if it exists
+ */
 router.delete('/', (req, res) => {
     const token = req.query.token;
     jwt.verify(token, process.env.JWT_SECRET, function (err){

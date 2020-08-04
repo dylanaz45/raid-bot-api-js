@@ -4,6 +4,12 @@ const jwt = require("jsonwebtoken");
 
 MongoConnection.connectToMongo();
 
+/**
+ * Route: /login
+ * Endpoint: GET /login
+ * URL Parameters: user, id
+ * Sends a JSON Web Token if the credentials exist in the database
+ */
 router.get('/', (req, res) => {
     const collection = MongoConnection.db.collection('_users')
     const user = req.query.user;

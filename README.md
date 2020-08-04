@@ -6,7 +6,8 @@
 [![Known Vulnerabilities](https://snyk.io/test/github/dylanaz45/raid-bot-api-js/badge.svg?targetFile=package.json)](https://snyk.io/test/github/dylanaz45/raid-bot-api-js?targetFile=package.json)
 
 A REST API that connects [Raid Bot](https://github.com/dylanaz45/raid-bot) to a MongoDB database. BeautifulSoup was 
-used to obtain majority of the data for the database.
+used to obtain majority of the data for the database. This is the JavaScript version of my API, which also features
+token based authentication.
 
 ## Features 
 * A system that allows users to register a den they are currently hosting and allows other users to see what raids are

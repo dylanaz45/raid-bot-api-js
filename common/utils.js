@@ -1,6 +1,9 @@
 require('dotenv').config();
 const {MongoClient} = require("mongodb");
 
+/**
+ * Class that connects to the MongoDB database and returns the database instance
+ */
 class MongoConnection {
     static async connectToMongo() {
         if (this.db) return this.db

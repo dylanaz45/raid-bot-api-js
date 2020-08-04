@@ -5,6 +5,12 @@ const jwt = require("jsonwebtoken");
 
 MongoConnection.connectToMongo();
 
+/**
+ * Route: /den_info
+ * Endpoint: GET /den_info
+ * URL Parameters: token (JSON Web Token used for authentication), den (a Pokemon Sword and Shield den)
+ * Sends the ability for a specified den
+ */
 router.get('/', (req, res) => {
     const token = req.query.token;
     jwt.verify(token, process.env.JWT_SECRET, function (err){

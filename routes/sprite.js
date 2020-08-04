@@ -6,6 +6,12 @@ require("../common/toTitle");
 
 MongoConnection.connectToMongo();
 
+/**
+ * Route: /sprite
+ * Endpoint: GET /sprite
+ * URL Parameters: token (JSON Web Token used for authentication), name (the name of a Pokemon)
+ * Sends a list of dens that the Pokemon can be found in
+ */
 router.get('/', (req, res) => {
     const token = req.query.token;
     jwt.verify(token, process.env.JWT_SECRET, function (err){

@@ -5,6 +5,12 @@ const jwt = require("jsonwebtoken");
 
 MongoConnection.connectToMongo();
 
+/**
+ * Route: /dadjoke
+ * Endpoint: GET /dadjoke
+ * URL Parameters: token (JSON Web Token used for authentication)
+ * Sends a random dad joke
+ */
 router.get('/', (req, res) => {
     const token = req.query.token;
     jwt.verify(token, process.env.JWT_SECRET, function (err){

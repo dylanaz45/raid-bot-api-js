@@ -5,6 +5,13 @@ const jwt = require("jsonwebtoken");
 
 MongoConnection.connectToMongo();
 
+/**
+ * Route: /active
+ * Endpoint: GET /active
+ * URL Parameters: token (JSON Web Token used for authentication)
+ * Sends a list of active raids if any exist
+ * Format: {<index>: [<_id>, <den>], ...}
+ */
 router.get('/', (req, res) => {
     const token = req.query.token;
     jwt.verify(token, process.env.JWT_SECRET, function (err){
