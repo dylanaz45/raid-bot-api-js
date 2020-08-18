@@ -22,7 +22,7 @@ router.get('/', (req, res) => {
                 res.status(200).json({text: document[0].quoteText, author: document[0].quoteAuthor})
             })
         } else {
-            res.status(200).json({access: "denied"})
+            res.status(401).send("Unauthorized")
         }
     })
 })

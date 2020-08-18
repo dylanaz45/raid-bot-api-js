@@ -32,7 +32,7 @@ router.get('/', (req, res) => {
                 }
             })
         } else {
-            res.status(200).json({access: "denied"})
+            res.status(401).send("Unauthorized")
         }
     })
 })

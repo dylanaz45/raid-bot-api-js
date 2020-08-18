@@ -27,6 +27,7 @@
     "bcrypt": "^5.0.0",
     "body-parser": "^1.19.0",
     "mongoose": "^5.9.26",
-    "cross-env": "^7.0.2"
+    "cross-env": "^7.0.2",
+    "eslint": "^7.6.0"
   }
 }
