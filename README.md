@@ -1,6 +1,5 @@
 # Raid Bot API
 [![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=dylanaz45_raid-bot-api-js&metric=security_rating)](https://sonarcloud.io/dashboard?id=dylanaz45_raid-bot-api-js)
-[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=dylanaz45_raid-bot-api-js&metric=bugs)](https://sonarcloud.io/dashboard?id=dylanaz45_raid-bot-api-js)
 [![Known Vulnerabilities](https://snyk.io/test/github/dylanaz45/raid-bot-api-js/badge.svg?targetFile=package.json)](https://snyk.io/test/github/dylanaz45/raid-bot-api-js?targetFile=package.json)
 
 A REST API that connects [Raid Bot](https://github.com/dylanaz45/raid-bot) to a MongoDB database. BeautifulSoup was 
