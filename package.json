@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "newman run tests\\raid_bot.postman_collection -e tests\\raid_bot_key.postman_environment.json",
     "start": "node app.js",
     "dev": "cross-env NODE_ENV=development nodemon app.js"
   },
@@ -28,6 +28,7 @@
     "body-parser": "^1.19.0",
     "mongoose": "^5.9.26",
     "cross-env": "^7.0.2",
-    "eslint": "^7.6.0"
+    "eslint": "^7.6.0",
+    "newman": "^5.1.2"
   }
 }

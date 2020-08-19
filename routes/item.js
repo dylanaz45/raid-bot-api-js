@@ -8,7 +8,7 @@ router.get("/", (req, res) => {
         if (!err) {
             const item = items.BattleItems[req.query.name]
             if (typeof item === 'undefined') {
-                res.status(200).send({"0": "Undefined"})
+                res.status(404).send({"0": "Item does not exist"})
             } else {
                 res.status(200).send({name: item.name, desc: item.desc})
             }

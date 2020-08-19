@@ -1,0 +1,1072 @@
+{
+	"info": {
+		"_postman_id": "79912da6-0165-424b-a5b5-6704128b8b73",
+		"name": "Raid Bot",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Index",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b8b9e8fe-1b33-494b-acba-d530a783c61c",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () { \r",
+							"    pm.expect(pm.response.code).to.eql(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Correct message\", () => {\r",
+							"    const response = pm.response.json();\r",
+							"    pm.expect(response.msg).to.eql(\"Connected\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Random quote",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6259ad38-4b04-48f8-9a1d-30548de17c6b",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () { \r",
+							"    pm.response.to.have.status(200); \r",
+							"});\r",
+							"\r",
+							"pm.test(\"Has quote text and author properties\", () => {\r",
+							"    const response = pm.response.json();\r",
+							"    pm.expect(response).to.have.property(\"text\");\r",
+							"    pm.expect(response).to.have.property(\"author\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/quote",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"quote"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Random quote Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "81245f0d-f158-4074-880b-c8a0133f5558",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () { \r",
+							"    pm.response.to.have.status(200); \r",
+							"});\r",
+							"\r",
+							"pm.test(\"Has quote text and author properties\", () => {\r",
+							"    const response = pm.response.json();\r",
+							"    pm.expect(response).to.have.property(\"text\");\r",
+							"    pm.expect(response).to.have.property(\"author\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/quote",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"quote"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Random dad joke",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "74918f5d-b491-4eff-a274-88b66b97b766",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () { \r",
+							"    pm.response.to.have.status(200); \r",
+							"});\r",
+							"\r",
+							"pm.test(\"Has joke property\", () => {\r",
+							"    const response = pm.response.json();\r",
+							"    pm.expect(response).to.have.property(\"joke\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/dadjoke",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"dadjoke"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Den info for Charmander",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b0505de2-8568-45e8-8394-65c7fe48aaed",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () { \r",
+							"    pm.response.to.have.status(200); \r",
+							"});\r",
+							"\r",
+							"pm.test(\"Has correct properties\", () => {\r",
+							"    const response = pm.response.json();\r",
+							"    pm.expect(response.name).to.eql(\"Charmander\");\r",
+							"    pm.expect(response.id).to.eql(\"004\");\r",
+							"    pm.expect(response.swsh).to.eql([53,77]);\r",
+							"    pm.expect(response.sword).to.eql([]);\r",
+							"    pm.expect(response.shield).to.eql([]);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/den_poke?name=charmander",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"den_poke"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "charmander"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Den info for invalid pokemon",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "26b1b594-e1de-4301-b978-9b28a0ae5266",
+						"exec": [
+							"pm.test(\"Status code is 404\", function () { \r",
+							"    pm.response.to.have.status(404); \r",
+							"});\r",
+							"\r",
+							"pm.test(\"Has correct properties\", () => {\r",
+							"    const response = pm.response.json();\r",
+							"    pm.expect(response['0']).to.eql(\"Pokemon does not exist\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/den_poke?name=god",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"den_poke"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "god"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Den info for 156",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "3446d225-8b23-4153-895b-faebaad47ddd",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () { \r",
+							"    pm.response.to.have.status(200); \r",
+							"});\r",
+							"\r",
+							"pm.test(\"Has correct properties\", () => {\r",
+							"    const response = pm.response.json();\r",
+							"    pm.expect(response.den).to.eql(\"156\");\r",
+							"    pm.expect(response.ability).to.eql(\"Standard and Hidden Possible\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/den_info?den=156",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"den_info"
+					],
+					"query": [
+						{
+							"key": "den",
+							"value": "156"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Den info for 176",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b9e583c5-c380-4518-8620-9e0ba82d65cf",
+						"exec": [
+							"pm.test(\"Status code is 404\", function () { \r",
+							"    pm.response.to.have.status(404); \r",
+							"});\r",
+							"\r",
+							"pm.test(\"Has correct properties\", () => {\r",
+							"    const response = pm.response.json();\r",
+							"    pm.expect(response['0']).to.eql(\"Den not found\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/den_info?den=176",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"den_info"
+					],
+					"query": [
+						{
+							"key": "den",
+							"value": "176"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Sprite giratina",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e1e5a696-f787-4bd9-80b7-589a561f446a",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () { \r",
+							"    pm.response.to.have.status(200); \r",
+							"});\r",
+							"\r",
+							"pm.test(\"Has giratina's id\", () => {\r",
+							"    const response = pm.response.json();\r",
+							"    pm.expect(response.id).to.eql(\"487-1\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/sprite?name=giratina-origin",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"sprite"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "giratina-origin"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Sprite invalid pokemon",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "20142046-fa76-45fc-ac4c-8dd1ba0c473e",
+						"exec": [
+							"pm.test(\"Status code is 404\", function () { \r",
+							"    pm.response.to.have.status(404); \r",
+							"});\r",
+							"\r",
+							"pm.test(\"Has correct response\", () => {\r",
+							"    const response = pm.response.json();\r",
+							"    pm.expect(response['0']).to.eql(\"Pokemon does not exist\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/sprite?name=god",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"sprite"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "god"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Starting a raid",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "39cbf9ed-2c88-43d4-973d-405488089e6b",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () { \r",
+							"    pm.response.to.have.status(200); \r",
+							"});\r",
+							"\r",
+							"pm.test(\"Has correct response\", () => {\r",
+							"    const response = pm.response.json();\r",
+							"    pm.expect(response['1']).to.eql(\"Success\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/start?_id=1&name=Test&den=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"start"
+					],
+					"query": [
+						{
+							"key": "_id",
+							"value": "1"
+						},
+						{
+							"key": "name",
+							"value": "Test"
+						},
+						{
+							"key": "den",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Start raid but already exists",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "47baf1fc-a31d-4c5b-a09b-e4f86ac9f563",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () { \r",
+							"    pm.response.to.have.status(200); \r",
+							"});\r",
+							"\r",
+							"pm.test(\"Has correct response\", () => {\r",
+							"    const response = pm.response.json();\r",
+							"    pm.expect(response['0']).to.eql(\"Pre-existing raid exists\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/start?_id=1&name=Test&den=5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"start"
+					],
+					"query": [
+						{
+							"key": "_id",
+							"value": "1"
+						},
+						{
+							"key": "name",
+							"value": "Test"
+						},
+						{
+							"key": "den",
+							"value": "5"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Display the active raid",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9a844ef2-2dc4-4adf-b2be-e2761c4f312d",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () { \r",
+							"    pm.response.to.have.status(200); \r",
+							"});\r",
+							"\r",
+							"pm.test(\"Has correct response\", () => {\r",
+							"    const response = pm.response.json();\r",
+							"    pm.expect(response['1']).to.eql([\"1\", \"1\"]);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/active",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"active"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "End the active raid",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "dc83bb08-350f-454a-904c-88da6d79f9b2",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () { \r",
+							"    pm.response.to.have.status(200); \r",
+							"});\r",
+							"\r",
+							"pm.test(\"Has correct response\", () => {\r",
+							"    const response = pm.response.json();\r",
+							"    pm.expect(response['1']).to.eql(\"Success\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/end?_id=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"end"
+					],
+					"query": [
+						{
+							"key": "_id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "End a non-existing raid",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "055a03bb-ca28-4e5b-a2bb-78a8ea7c76c4",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () { \r",
+							"    pm.response.to.have.status(200); \r",
+							"});\r",
+							"\r",
+							"pm.test(\"Has correct response\", () => {\r",
+							"    const response = pm.response.json();\r",
+							"    pm.expect(response['0']).to.eql(\"Raid not found\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/end?_id=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"end"
+					],
+					"query": [
+						{
+							"key": "_id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Ability Iron Fist",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ba352583-a3a1-4180-b398-71ae589958fa",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () { \r",
+							"    pm.response.to.have.status(200); \r",
+							"});\r",
+							"\r",
+							"pm.test(\"Has correct response\", () => {\r",
+							"    const response = pm.response.json();\r",
+							"    pm.expect(response.name).to.eql(\"Iron Fist\");\r",
+							"    pm.expect(response.desc).to.eql(\"This Pokemon's punch-based attacks have their power multiplied by 1.2.\");\r",
+							"    pm.expect(response.rating).to.eql(3);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/ability?name=ironfist",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"ability"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "ironfist"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Ability that does not exist",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7949b053-d52b-4556-9693-1f3d8fb1e4f9",
+						"exec": [
+							"pm.test(\"Status code is 404\", function () { \r",
+							"    pm.response.to.have.status(404); \r",
+							"});\r",
+							"\r",
+							"pm.test(\"Has correct response\", () => {\r",
+							"    const response = pm.response.json();\r",
+							"    pm.expect(response['0']).to.eql(\"Ability does not exist\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/ability?name=god",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"ability"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "god"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Item Psychic Seed",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "dc0d9b51-160e-4efd-9c2e-e0e839c5ab9c",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () { \r",
+							"    pm.response.to.have.status(200); \r",
+							"});\r",
+							"\r",
+							"pm.test(\"Has correct response\", () => {\r",
+							"    const response = pm.response.json();\r",
+							"    pm.expect(response.name).to.eql(\"Psychic Seed\");\r",
+							"    pm.expect(response.desc).to.eql(\"If the terrain is Psychic Terrain, raises holder's Sp. Def by 1 stage. Single use.\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/item?name=psychicseed",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"item"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "psychicseed"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Item that does not exist",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9ddb574c-c8ee-4f20-8a7d-600661e919f2",
+						"exec": [
+							"pm.test(\"Status code is 404\", function () { \r",
+							"    pm.response.to.have.status(404); \r",
+							"});\r",
+							"\r",
+							"pm.test(\"Has correct response\", () => {\r",
+							"    const response = pm.response.json();\r",
+							"    pm.expect(response['0']).to.eql(\"Item does not exist\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/item?name=god",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"item"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "god"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Move Fake Out",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "843dcd65-ec7e-464a-84af-1891d434fd06",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () { \r",
+							"    pm.response.to.have.status(200); \r",
+							"});\r",
+							"\r",
+							"pm.test(\"Has correct response\", () => {\r",
+							"    const response = pm.response.json();\r",
+							"    pm.expect(response.name).to.eql(\"Fake Out\");\r",
+							"    pm.expect(response.shortDesc).to.eql(\"Hits first. First turn out only. 100% flinch chance.\");\r",
+							"    pm.expect(response.category).to.eql(\"Physical\");\r",
+							"    pm.expect(response.power).to.eql(40);\r",
+							"    pm.expect(response.accuracy).to.eql(100);\r",
+							"    pm.expect(response.type).to.eql(\"Normal\");\r",
+							"    pm.expect(response.priority).to.eql(3);\r",
+							"    pm.expect(response.desc).to.eql(\"Has a 100% chance to flinch the target. Fails unless it is the user's first turn on the field.\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/move?name=fakeout",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"move"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "fakeout"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Move that does not exist",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "cdd6af13-0b8a-428d-8ff5-c7178e973f2d",
+						"exec": [
+							"pm.test(\"Status code is 404\", function () { \r",
+							"    pm.response.to.have.status(404); \r",
+							"});\r",
+							"\r",
+							"pm.test(\"Has correct response\", () => {\r",
+							"    const response = pm.response.json();\r",
+							"    pm.expect(response['0']).to.eql(\"Move does not exist\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/move?name=god",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"move"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "god"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Pokedex Charizard",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "991200e4-89f3-43a6-9a0a-b46b53eacd0c",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () { \r",
+							"    pm.response.to.have.status(200); \r",
+							"});\r",
+							"\r",
+							"pm.test(\"Has correct response\", () => {\r",
+							"    const response = pm.response.json();\r",
+							"    pm.expect(response.num).to.eql(6);\r",
+							"    pm.expect(response.species).to.eql(\"Charizard\");\r",
+							"    pm.expect(response.types).to.eql(['Fire', 'Flying']);\r",
+							"    pm.expect(response.stats).to.eql({ hp: 78, atk: 84, def: 78, spa: 109, spd: 85, spe: 100 });\r",
+							"    pm.expect(response.abilities).to.eql({ 0: 'Blaze', H: 'Solar Power' });\r",
+							"    pm.expect(response.otherForms).to.eql(['Charizard-Mega-X', 'Charizard-Mega-Y', 'Charizard-Gmax']);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/pokedex?name=charizard",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"pokedex"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "charizard"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Pokedex pokemon that does not exist",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d76050bd-4d03-4d7b-a1e1-732bf2adab2d",
+						"exec": [
+							"pm.test(\"Status code is 404\", function () { \r",
+							"    pm.response.to.have.status(404); \r",
+							"});\r",
+							"\r",
+							"pm.test(\"Has correct response\", () => {\r",
+							"    const response = pm.response.json();\r",
+							"    pm.expect(response['0']).to.eql(\"Pokemon does not exist\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/pokedex?name=god",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"pokedex"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "god"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "apikey",
+		"apikey": [
+			{
+				"key": "value",
+				"value": "{{token}}",
+				"type": "string"
+			},
+			{
+				"key": "in",
+				"value": "query",
+				"type": "string"
+			},
+			{
+				"key": "key",
+				"value": "token",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "d31141cf-6f85-437c-bcd5-77feaac410ee",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "53df7200-11fd-467e-8e91-1ffd7934fb01",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"protocolProfileBehavior": {}
+}

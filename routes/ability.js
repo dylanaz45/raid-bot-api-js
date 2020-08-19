@@ -8,7 +8,7 @@ router.get("/", (req, res) => {
         if (!err) {
             const ability = abilities.BattleAbilities[req.query.name]
             if (typeof ability === 'undefined') {
-                res.status(200).send({"0": "Undefined"})
+                res.status(404).send({"0": "Ability does not exist"})
             } else {
                 const ret = {}
                 ret['name'] = ability.name

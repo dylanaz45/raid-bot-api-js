@@ -8,9 +8,10 @@ router.get("/", (req, res) => {
         if (!err) {
             const move = moves.BattleMovedex[req.query.name]
             if (typeof move === 'undefined') {
-                res.status(200).send({"0": "Undefined"})
+                res.status(404).send({"0": "Move does not exist"})
             } else {
-                const ret = {name: move.name,
+                const ret = {
+                    name: move.name,
                     shortDesc: move.shortDesc,
                     category: move.category,
                     power: move.basePower,

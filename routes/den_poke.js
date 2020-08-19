@@ -27,7 +27,7 @@ router.get('/', (req, res) => {
                                                       "shield": document.shield
                     });
                 } else {
-                    res.status(200).json({"0": "Pokemon does not exist"});
+                    res.status(404).json({"0": "Pokemon does not exist"});
                 }
             })
         } else {

@@ -8,9 +8,10 @@ router.get("/", (req, res) => {
         if (!err) {
             const poke = dex.BattlePokedex[req.query.name]
             if (typeof poke === 'undefined') {
-                res.status(200).send({"0": "Undefined"})
+                res.status(404).send({"0": "Pokemon does not exist"})
             } else {
-                const ret = {num: poke.num,
+                const ret = {
+                    num: poke.num,
                     species: poke.species,
                     types: poke.types,
                     stats: poke.baseStats,

@@ -21,7 +21,7 @@ router.get('/', (req, res) => {
             const token = jwt.sign({user: document.user}, document.id)
             res.status(200).json({msg: token});
         } else {
-            res.status(200).json({msg: "Access denied"});
+            res.status(401).send("Unauthorized")
         }
     })
 })

@@ -22,7 +22,7 @@ router.get('/', (req, res) => {
                 if (document != null) {
                     res.status(200).json({"id": document.id});
                 } else {
-                    res.status(200).json({"0": "Pokemon does not exist"});
+                    res.status(404).json({"0": "Pokemon does not exist"});
                 }
             })
         } else {

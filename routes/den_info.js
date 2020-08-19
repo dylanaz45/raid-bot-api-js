@@ -21,7 +21,7 @@ router.get('/', (req, res) => {
                 if (document != null) {
                     res.status(200).json({"den": req.query.den, "ability": document.ability});
                 } else {
-                    res.status(200).json({"0": "Den not found"});
+                    res.status(404).json({"0": "Den not found"});
                 }
             })
         } else {
