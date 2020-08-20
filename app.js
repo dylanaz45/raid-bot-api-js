@@ -31,6 +31,7 @@ app.use('/item', item);
 app.use('/move', move);
 app.use('/pokedex', pokedex);
 
+process.title = process.argv[2]
 app.listen(5000, () => {
     console.log("Listening on port 5000")
 })
