@@ -4,5 +4,5 @@ node_js:
 jobs:
   include:
     - stage: test
-      script: bin/test.sh
+      script: bash bin/test.sh
 cache: npm
