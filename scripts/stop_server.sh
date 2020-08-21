@@ -1,2 +1,2 @@
 #!/bin/bash
-sudo pm2 stop api
+pm2 stop api
