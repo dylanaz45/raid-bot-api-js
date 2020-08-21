@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "e16e0035-d19b-4814-a59f-9295f5cc4d13",
-		"name": "Raid Bot no Token",
+		"name": "Raid Bot Testing",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -25,11 +25,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:5000/",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
+					"raw": ":5000/",
 					"port": "5000",
 					"path": [
 						""
@@ -62,11 +58,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:5000/quote",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
+					"raw": ":5000/quote",
 					"port": "5000",
 					"path": [
 						"quote"
