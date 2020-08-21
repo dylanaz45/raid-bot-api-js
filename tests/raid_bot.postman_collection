@@ -83,45 +83,6 @@
 			"response": []
 		},
 		{
-			"name": "Random quote Copy",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "81245f0d-f158-4074-880b-c8a0133f5558",
-						"exec": [
-							"pm.test(\"Status code is 200\", function () { \r",
-							"    pm.response.to.have.status(200); \r",
-							"});\r",
-							"\r",
-							"pm.test(\"Has quote text and author properties\", () => {\r",
-							"    const response = pm.response.json();\r",
-							"    pm.expect(response).to.have.property(\"text\");\r",
-							"    pm.expect(response).to.have.property(\"author\");\r",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:5000/quote",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "5000",
-					"path": [
-						"quote"
-					]
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "Random dad joke",
 			"event": [
 				{

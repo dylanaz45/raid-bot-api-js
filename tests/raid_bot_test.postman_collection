@@ -1,0 +1,80 @@
+{
+	"info": {
+		"_postman_id": "e16e0035-d19b-4814-a59f-9295f5cc4d13",
+		"name": "Raid Bot no Token",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Index",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d5e62090-4068-4ef7-8f5e-abfd9f42dce3",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () { \r",
+							"    pm.response.to.have.status(200); \r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Random quote",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ea1197d0-9200-4d12-ad45-08d1e7b18d42",
+						"exec": [
+							"pm.test(\"Status code is 401\", function () { \r",
+							"    pm.response.to.have.status(401); \r",
+							"});\r",
+							"\r",
+							"pm.test(\"Correct response\", () => {\r",
+							"    pm.response.to.have.body(\"Unauthorized\")\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/quote",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"quote"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
