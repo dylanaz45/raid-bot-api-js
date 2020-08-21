@@ -1,6 +1,12 @@
 language: node_js
 node_js:
   - node
-script:
-  - newman run tests/raid_bot_test.postman_collection
+jobs:
+  include:
+    - stage: start
+      script: pm2 start app.js --name "api"
+    - stage: test
+      script: newman run tests/raid_bot_test.postman_collection
+    - stage: stop
+      script: pm2 stop api
 cache: npm
