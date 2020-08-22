@@ -105,3 +105,8 @@ dist
 
 /.idea
 /tests/raid_bot_key.postman_environment.json
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml

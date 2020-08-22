@@ -31,8 +31,9 @@ app.use('/item', item);
 app.use('/move', move);
 app.use('/pokedex', pokedex);
 
-app.listen(5000, () => {
-    console.log("Listening on port 5000")
+const port = process.env.PORT || 3000
+app.listen(port, () => {
+    console.log("Listening on port " + port)
 })
 
 module.exports = app;
