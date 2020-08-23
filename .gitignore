@@ -104,7 +104,9 @@ dist
 .tern-port
 
 /.idea
+/data
 /tests/raid_bot_key.postman_environment.json
+/tests/raid_bot_heroku.postman_collection
 
 # Elastic Beanstalk Files
 .elasticbeanstalk/*

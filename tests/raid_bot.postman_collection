@@ -30,12 +30,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:5000/",
+					"raw": "http://localhost:3000/",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "5000",
+					"port": "3000",
 					"path": [
 						""
 					]
@@ -69,12 +69,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:5000/quote",
+					"raw": "http://localhost:3000/quote",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "5000",
+					"port": "3000",
 					"path": [
 						"quote"
 					]
@@ -107,12 +107,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:5000/dadjoke",
+					"raw": "http://localhost:3000/dadjoke",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "5000",
+					"port": "3000",
 					"path": [
 						"dadjoke"
 					]
@@ -149,12 +149,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:5000/den_poke?name=charmander",
+					"raw": "http://localhost:3000/den_poke?name=charmander",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "5000",
+					"port": "3000",
 					"path": [
 						"den_poke"
 					],
@@ -193,12 +193,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:5000/den_poke?name=god",
+					"raw": "http://localhost:3000/den_poke?name=god",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "5000",
+					"port": "3000",
 					"path": [
 						"den_poke"
 					],
@@ -238,12 +238,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:5000/den_info?den=156",
+					"raw": "http://localhost:3000/den_info?den=156",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "5000",
+					"port": "3000",
 					"path": [
 						"den_info"
 					],
@@ -282,12 +282,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:5000/den_info?den=176",
+					"raw": "http://localhost:3000/den_info?den=176",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "5000",
+					"port": "3000",
 					"path": [
 						"den_info"
 					],
@@ -326,19 +326,19 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:5000/sprite?name=giratina-origin",
+					"raw": "http://localhost:3000/sprite?name=giratina origin",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "5000",
+					"port": "3000",
 					"path": [
 						"sprite"
 					],
 					"query": [
 						{
 							"key": "name",
-							"value": "giratina-origin"
+							"value": "giratina origin"
 						}
 					]
 				}
@@ -370,12 +370,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:5000/sprite?name=god",
+					"raw": "http://localhost:3000/sprite?name=god",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "5000",
+					"port": "3000",
 					"path": [
 						"sprite"
 					],
@@ -414,12 +414,12 @@
 				"method": "POST",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:5000/start?_id=1&name=Test&den=1",
+					"raw": "http://localhost:3000/start?_id=1&name=Test&den=1",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "5000",
+					"port": "3000",
 					"path": [
 						"start"
 					],
@@ -466,12 +466,12 @@
 				"method": "POST",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:5000/start?_id=1&name=Test&den=5",
+					"raw": "http://localhost:3000/start?_id=1&name=Test&den=5",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "5000",
+					"port": "3000",
 					"path": [
 						"start"
 					],
@@ -518,12 +518,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:5000/active",
+					"raw": "http://localhost:3000/active",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "5000",
+					"port": "3000",
 					"path": [
 						"active"
 					]
@@ -556,12 +556,12 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:5000/end?_id=1",
+					"raw": "http://localhost:3000/end?_id=1",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "5000",
+					"port": "3000",
 					"path": [
 						"end"
 					],
@@ -600,12 +600,12 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:5000/end?_id=1",
+					"raw": "http://localhost:3000/end?_id=1",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "5000",
+					"port": "3000",
 					"path": [
 						"end"
 					],
@@ -646,12 +646,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:5000/ability?name=ironfist",
+					"raw": "http://localhost:3000/ability?name=ironfist",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "5000",
+					"port": "3000",
 					"path": [
 						"ability"
 					],
@@ -690,12 +690,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:5000/ability?name=god",
+					"raw": "http://localhost:3000/ability?name=god",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "5000",
+					"port": "3000",
 					"path": [
 						"ability"
 					],
@@ -735,12 +735,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:5000/item?name=psychicseed",
+					"raw": "http://localhost:3000/item?name=psychicseed",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "5000",
+					"port": "3000",
 					"path": [
 						"item"
 					],
@@ -779,12 +779,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:5000/item?name=god",
+					"raw": "http://localhost:3000/item?name=god",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "5000",
+					"port": "3000",
 					"path": [
 						"item"
 					],
@@ -830,12 +830,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:5000/move?name=fakeout",
+					"raw": "http://localhost:3000/move?name=fakeout",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "5000",
+					"port": "3000",
 					"path": [
 						"move"
 					],
@@ -874,12 +874,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:5000/move?name=god",
+					"raw": "http://localhost:3000/move?name=god",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "5000",
+					"port": "3000",
 					"path": [
 						"move"
 					],
@@ -923,12 +923,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:5000/pokedex?name=charizard",
+					"raw": "http://localhost:3000/pokedex?name=charizard",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "5000",
+					"port": "3000",
 					"path": [
 						"pokedex"
 					],
@@ -967,12 +967,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:5000/pokedex?name=god",
+					"raw": "http://localhost:3000/pokedex?name=god",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "5000",
+					"port": "3000",
 					"path": [
 						"pokedex"
 					],
