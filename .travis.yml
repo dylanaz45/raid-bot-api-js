@@ -6,3 +6,5 @@ jobs:
     - stage: test
       script: bash bin/test.sh
 cache: npm
+services:
+  - redis-server
