@@ -2,6 +2,7 @@ require('dotenv').config();
 const router = require("express").Router();
 const {MongoConnection} = require("../common/utils");
 const jwt = require("jsonwebtoken");
+const client = require("redis").createClient(process.env.REDIS_URL);
 require("../common/toTitle");
 
 MongoConnection.connectToMongo();
@@ -16,18 +17,32 @@ router.get('/', (req, res) => {
     const token = req.query.token;
     jwt.verify(token, process.env.JWT_SECRET, function (err){
         if (!err) {
-            const collection = MongoConnection.db.collection('den_poke')
-            const cursor = collection.findOne({name: req.query.name.toTitleCase()});
-            cursor.then(document => {
-                if (document != null) {
-                    res.status(200).json({"name": document.name,
-                                                      "id": document.id,
-                                                      "swsh": document.swsh,
-                                                      "sword": document.sword,
-                                                      "shield": document.shield
-                    });
+            client.get(req.query.name.toTitleCase() + "-den", (err, result) => {
+                if (result) {
+                    res.status(200).json(JSON.parse(result));
                 } else {
-                    res.status(404).json({"0": "Pokemon does not exist"});
+                    const collection = MongoConnection.db.collection('den_poke')
+                    const cursor = collection.findOne({name: req.query.name.toTitleCase()});
+                    cursor.then(document => {
+                        if (document != null) {
+                            const ret = {
+                                "name": document.name,
+                                "id": document.id,
+                                "swsh": document.swsh,
+                                "sword": document.sword,
+                                "shield": document.shield
+                            }
+                            client.set(req.query.name.toTitleCase() + "-den", JSON.stringify(ret), "EX", 60 * 20, (err, result) => {
+                                if (result) {
+                                    res.status(200).json(ret);
+                                } else {
+                                    console.log(err)
+                                }
+                            })
+                        } else {
+                            res.status(404).json({"0": "Pokemon does not exist"});
+                        }
+                    })
                 }
             })
         } else {
