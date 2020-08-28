@@ -32,11 +32,13 @@
     "body-parser": "^1.19.0",
     "mongoose": "^5.9.26",
     "cross-env": "^7.0.2",
-    "eslint": "^7.6.0",
     "newman": "^5.1.2",
     "lodash": "^4.17.20",
     "socket.io-client": "^2.3.0",
     "pm2": "^4.4.1",
     "redis": "^3.0.2"
+  },
+  "devDependencies": {
+    "eslint": "^7.7.0"
   }
 }

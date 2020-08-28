@@ -646,14 +646,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/ability?name=ironfist",
+					"raw": "http://localhost:3000/data?name=ironfist",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
-						"ability"
+						"data"
 					],
 					"query": [
 						{
@@ -679,7 +679,7 @@
 							"\r",
 							"pm.test(\"Has correct response\", () => {\r",
 							"    const response = pm.response.json();\r",
-							"    pm.expect(response['0']).to.eql(\"Ability does not exist\");\r",
+							"    pm.expect(response['0']).to.eql(\"god does not exist\");\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -690,14 +690,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/ability?name=god",
+					"raw": "http://localhost:3000/data?name=god",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
-						"ability"
+						"data"
 					],
 					"query": [
 						{
@@ -735,14 +735,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/item?name=psychicseed",
+					"raw": "http://localhost:3000/data?name=psychicseed",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
-						"item"
+						"data"
 					],
 					"query": [
 						{
@@ -768,7 +768,7 @@
 							"\r",
 							"pm.test(\"Has correct response\", () => {\r",
 							"    const response = pm.response.json();\r",
-							"    pm.expect(response['0']).to.eql(\"Item does not exist\");\r",
+							"    pm.expect(response['0']).to.eql(\"god does not exist\");\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -779,14 +779,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/item?name=god",
+					"raw": "http://localhost:3000/data?name=god",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
-						"item"
+						"data"
 					],
 					"query": [
 						{
@@ -830,14 +830,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/move?name=fakeout",
+					"raw": "http://localhost:3000/data?name=fakeout",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
-						"move"
+						"data"
 					],
 					"query": [
 						{
@@ -863,7 +863,7 @@
 							"\r",
 							"pm.test(\"Has correct response\", () => {\r",
 							"    const response = pm.response.json();\r",
-							"    pm.expect(response['0']).to.eql(\"Move does not exist\");\r",
+							"    pm.expect(response['0']).to.eql(\"god does not exist\");\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -874,14 +874,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/move?name=god",
+					"raw": "http://localhost:3000/data?name=god",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
-						"move"
+						"data"
 					],
 					"query": [
 						{
@@ -923,14 +923,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/pokedex?name=charizard",
+					"raw": "http://localhost:3000/data?name=charizard",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
-						"pokedex"
+						"data"
 					],
 					"query": [
 						{
@@ -956,7 +956,7 @@
 							"\r",
 							"pm.test(\"Has correct response\", () => {\r",
 							"    const response = pm.response.json();\r",
-							"    pm.expect(response['0']).to.eql(\"Pokemon does not exist\");\r",
+							"    pm.expect(response['0']).to.eql(\"god does not exist\");\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -967,19 +967,307 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/pokedex?name=god",
+					"raw": "http://localhost:3000/data?name=god",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
-						"pokedex"
+						"data"
 					],
 					"query": [
 						{
 							"key": "name",
 							"value": "god"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Random Smogon set from main collection",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "fa28a353-5109-4454-845f-3232992999bb",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () { \r",
+							"    pm.response.to.have.status(200); \r",
+							"});\r",
+							"\r",
+							"pm.test(\"Has correct propertites\", () => {\r",
+							"    const response = pm.response.json();\r",
+							"    pm.expect(response).to.have.property(\"_id\");\r",
+							"    pm.expect(response).to.have.property(\"name\");\r",
+							"    pm.expect(response).to.have.property(\"moves\");\r",
+							"    pm.expect(response).to.have.property(\"ability\");\r",
+							"    pm.expect(response).to.have.property(\"nature\");\r",
+							"    pm.expect(response).to.have.property(\"evs\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ":3000/set?tier=&name=charizard&size=one",
+					"port": "3000",
+					"path": [
+						"set"
+					],
+					"query": [
+						{
+							"key": "tier",
+							"value": ""
+						},
+						{
+							"key": "name",
+							"value": "charizard"
+						},
+						{
+							"key": "size",
+							"value": "one"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Random Smogon set for pokemon that doesn't exist",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "529976ab-790c-43c8-ae60-b37ae4c04e63",
+						"exec": [
+							"pm.test(\"Status code is 404\", function () { \r",
+							"    pm.response.to.have.status(404); \r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ":3000/set?tier=&name=charizarda&size=one",
+					"port": "3000",
+					"path": [
+						"set"
+					],
+					"query": [
+						{
+							"key": "tier",
+							"value": ""
+						},
+						{
+							"key": "name",
+							"value": "charizarda"
+						},
+						{
+							"key": "size",
+							"value": "one"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "All sets for Charizard",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5ed848a0-10e3-475f-a593-dc6b3a5ccc09",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () { \r",
+							"    pm.response.to.have.status(200); \r",
+							"});\r",
+							"\r",
+							"pm.test(\"Has correct propertites\", () => {\r",
+							"    const response = pm.response.json();\r",
+							"    pm.expect(response).to.have.property(\"1\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ":3000/set?tier=&name=charizard&size=all",
+					"port": "3000",
+					"path": [
+						"set"
+					],
+					"query": [
+						{
+							"key": "tier",
+							"value": ""
+						},
+						{
+							"key": "name",
+							"value": "charizard"
+						},
+						{
+							"key": "size",
+							"value": "all"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "All sets for non-existing pokemon",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "fbbd7dde-c6b5-428c-a426-4fcac20ae2f5",
+						"exec": [
+							"pm.test(\"Status code is 404\", function () { \r",
+							"    pm.response.to.have.status(404); \r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ":3000/set?tier=ou&name=charizarda&size=all",
+					"port": "3000",
+					"path": [
+						"set"
+					],
+					"query": [
+						{
+							"key": "tier",
+							"value": "ou"
+						},
+						{
+							"key": "name",
+							"value": "charizarda"
+						},
+						{
+							"key": "size",
+							"value": "all"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Random Smogon set from vgc collection",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "19e3ad5d-fc1a-4f58-97ad-1a3e3549d483",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () { \r",
+							"    pm.response.to.have.status(200); \r",
+							"});\r",
+							"\r",
+							"pm.test(\"Has correct propertites\", () => {\r",
+							"    const response = pm.response.json();\r",
+							"    pm.expect(response).to.have.property(\"_id\");\r",
+							"    pm.expect(response).to.have.property(\"name\");\r",
+							"    pm.expect(response).to.have.property(\"moves\");\r",
+							"    pm.expect(response).to.have.property(\"ability\");\r",
+							"    pm.expect(response).to.have.property(\"nature\");\r",
+							"    pm.expect(response).to.have.property(\"evs\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ":3000/set?tier=vgc2020&name=charizard&size=one",
+					"port": "3000",
+					"path": [
+						"set"
+					],
+					"query": [
+						{
+							"key": "tier",
+							"value": "vgc2020"
+						},
+						{
+							"key": "name",
+							"value": "charizard"
+						},
+						{
+							"key": "size",
+							"value": "one"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "All Smogon sets from vgc collection",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "75c91c3c-4059-4c80-af00-823f99b9b8ce",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () { \r",
+							"    pm.response.to.have.status(200); \r",
+							"});\r",
+							"\r",
+							"pm.test(\"Has correct propertites\", () => {\r",
+							"    const response = pm.response.json();\r",
+							"    pm.expect(response).to.have.property(\"1\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ":3000/set?tier=vgc2020&name=charizard&size=all",
+					"port": "3000",
+					"path": [
+						"set"
+					],
+					"query": [
+						{
+							"key": "tier",
+							"value": "vgc2020"
+						},
+						{
+							"key": "name",
+							"value": "charizard"
+						},
+						{
+							"key": "size",
+							"value": "all"
 						}
 					]
 				}

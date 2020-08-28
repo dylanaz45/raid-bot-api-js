@@ -11,10 +11,8 @@ const den_poke = require("./routes/den_poke");
 const dadjoke = require("./routes/dadjoke");
 const quote = require("./routes/quote");
 const login = require("./routes/login");
-const ability = require("./routes/ability");
-const item = require("./routes/item");
-const move = require("./routes/move")
-const pokedex = require("./routes/pokedex")
+const data = require("./routes/data");
+const set = require("./routes/set");
 
 app.use('/', index);
 app.use('/start', start);
@@ -26,10 +24,8 @@ app.use('/den_poke', den_poke);
 app.use('/dadjoke', dadjoke);
 app.use('/quote', quote);
 app.use('/login', login);
-app.use('/ability', ability);
-app.use('/item', item);
-app.use('/move', move);
-app.use('/pokedex', pokedex);
+app.use('/data', data);
+app.use('/set', set);
 
 const port = process.env.PORT || 3000
 app.listen(port, () => {
