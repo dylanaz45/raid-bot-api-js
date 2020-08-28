@@ -21,7 +21,7 @@ router.get('/', (req, res) => {
     const token = req.query.token;
     jwt.verify(token, process.env.JWT_SECRET, function (err){
         if (!err) {
-            client.get(req.query.name.toTitleCase() + '-sets' + req.query.tier, (err, result) => {
+            client.get(req.query.name.toTitleCase() + '-sets' + req.query.tier + req.query.gen, (err, result) => {
                 if (result) {
                     result = JSON.parse(result)
 
@@ -32,7 +32,7 @@ router.get('/', (req, res) => {
                         res.status(200).json(result);
                     }
                 } else {
-                    const collection = MongoConnection.db.collection('gen8' + req.query.tier)
+                    const collection = MongoConnection.db.collection('gen' + req.query.gen + req.query.tier)
                     const cursor = collection.find({name: req.query.name.toTitleCase()})
                     const promise = cursor.toArray();
 
@@ -43,7 +43,7 @@ router.get('/', (req, res) => {
                                 ret[index + 1] = item;
                             })
 
-                            client.set(req.query.name.toTitleCase() + '-sets' + req.query.tier, JSON.stringify(ret), "EX", 60 * 60, (err, result) => {
+                            client.set(req.query.name.toTitleCase() + '-sets' + req.query.tier + req.query.gen, JSON.stringify(ret), "EX", 60 * 60, (err, result) => {
                                 if (result) {
                                     if (req.query.size === "one") {
                                         const keys = Object.keys(ret)
