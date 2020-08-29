@@ -15,7 +15,7 @@ MongoConnection.connectToMongo();
  *
  * Verifies the JWT then checks the Redis cache to see if sets for the specified Pokemon and tier is available. If not,
  * a query is made to the MongoDB database. If a Pokemon set for the specified tier exists, all the sets for that
- * Pokemon are saved to the cache
+ * Pokemon are saved to the cache. Random sets can be sent when the name parameter is set to random
  */
 router.get('/', (req, res) => {
     const token = req.query.token;
@@ -33,32 +33,39 @@ router.get('/', (req, res) => {
                     }
                 } else {
                     const collection = MongoConnection.db.collection('gen' + req.query.gen + req.query.tier)
-                    const cursor = collection.find({name: req.query.name.toTitleCase()})
-                    const promise = cursor.toArray();
+                    if (req.query.name.toTitleCase() === "Random") {
+                        const cursor = collection.aggregate([{$sample: {size: 1}}])
+                        cursor.toArray((err, document) =>{
+                            res.status(200).json(document)
+                        })
+                    } else {
+                        const cursor = collection.find({name: req.query.name.toTitleCase()})
+                        const promise = cursor.toArray();
 
-                    promise.then(sets => {
-                        if (sets.length > 0) {
-                            const ret = {}
-                            sets.forEach((item, index) => {
-                                ret[index + 1] = item;
-                            })
+                        promise.then(sets => {
+                            if (sets.length > 0) {
+                                const ret = {}
+                                sets.forEach((item, index) => {
+                                    ret[index + 1] = item;
+                                })
 
-                            client.set(req.query.name.toTitleCase() + '-sets' + req.query.tier + req.query.gen, JSON.stringify(ret), "EX", 60 * 60, (err, result) => {
-                                if (result) {
-                                    if (req.query.size === "one") {
-                                        const keys = Object.keys(ret)
-                                        res.status(200).json(ret[keys[keys.length * Math.random() << 0]])
-                                    } else if (req.query.size === "all") {
-                                        res.status(200).json(ret)
+                                client.set(req.query.name.toTitleCase() + '-sets' + req.query.tier + req.query.gen, JSON.stringify(ret), "EX", 60 * 60, (err, result) => {
+                                    if (result) {
+                                        if (req.query.size === "one") {
+                                            const keys = Object.keys(ret)
+                                            res.status(200).json(ret[keys[keys.length * Math.random() << 0]])
+                                        } else if (req.query.size === "all") {
+                                            res.status(200).json(ret)
+                                        }
+                                    } else {
+                                        console.log(err)
                                     }
-                                } else {
-                                    console.log(err)
-                                }
-                            })
-                        } else {
-                            res.status(404).json({"0": "Pokemon not found"});
-                        }
-                    })
+                                })
+                            } else {
+                                res.status(404).json({"0": "Pokemon not found"});
+                            }
+                        })
+                    }
                 }
             })
         } else {
