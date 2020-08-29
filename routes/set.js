@@ -36,7 +36,7 @@ router.get('/', (req, res) => {
                     if (req.query.name.toTitleCase() === "Random") {
                         const cursor = collection.aggregate([{$sample: {size: 1}}])
                         cursor.toArray((err, document) =>{
-                            res.status(200).json(document)
+                            res.status(200).json(document[0])
                         })
                     } else {
                         const cursor = collection.find({name: req.query.name.toTitleCase()})
