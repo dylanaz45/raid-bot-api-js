@@ -13,7 +13,10 @@ const quote = require("./routes/quote");
 const login = require("./routes/login");
 const data = require("./routes/data");
 const set = require("./routes/set");
+const bodyParser = require("body-parser");
 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}))
 app.use('/', index);
 app.use('/start', start);
 app.use('/end', end);
