@@ -1016,7 +1016,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": ":3000/set?tier=&name=charizard&size=one",
+					"raw": ":3000/set?tier=&name=charizard&size=one&gen=8",
 					"port": "3000",
 					"path": [
 						"set"
@@ -1033,6 +1033,10 @@
 						{
 							"key": "size",
 							"value": "one"
+						},
+						{
+							"key": "gen",
+							"value": "8"
 						}
 					]
 				}
@@ -1059,7 +1063,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": ":3000/set?tier=&name=charizarda&size=one",
+					"raw": ":3000/set?tier=&name=charizarda&size=one&gen=8",
 					"port": "3000",
 					"path": [
 						"set"
@@ -1076,6 +1080,10 @@
 						{
 							"key": "size",
 							"value": "one"
+						},
+						{
+							"key": "gen",
+							"value": "8"
 						}
 					]
 				}
@@ -1107,7 +1115,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": ":3000/set?tier=&name=charizard&size=all",
+					"raw": ":3000/set?tier=&name=charizard&size=all&gen=8",
 					"port": "3000",
 					"path": [
 						"set"
@@ -1124,6 +1132,10 @@
 						{
 							"key": "size",
 							"value": "all"
+						},
+						{
+							"key": "gen",
+							"value": "8"
 						}
 					]
 				}
@@ -1150,7 +1162,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": ":3000/set?tier=ou&name=charizarda&size=all",
+					"raw": ":3000/set?tier=ou&name=charizarda&size=all&gen=8",
 					"port": "3000",
 					"path": [
 						"set"
@@ -1167,6 +1179,10 @@
 						{
 							"key": "size",
 							"value": "all"
+						},
+						{
+							"key": "gen",
+							"value": "8"
 						}
 					]
 				}
@@ -1203,7 +1219,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": ":3000/set?tier=vgc2020&name=charizard&size=one",
+					"raw": ":3000/set?tier=vgc2020&name=charizard&size=one&gen=8",
 					"port": "3000",
 					"path": [
 						"set"
@@ -1220,6 +1236,10 @@
 						{
 							"key": "size",
 							"value": "one"
+						},
+						{
+							"key": "gen",
+							"value": "8"
 						}
 					]
 				}
@@ -1251,7 +1271,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": ":3000/set?tier=vgc2020&name=charizard&size=all",
+					"raw": ":3000/set?tier=vgc2020&name=charizard&size=all&gen=8",
 					"port": "3000",
 					"path": [
 						"set"
@@ -1268,6 +1288,119 @@
 						{
 							"key": "size",
 							"value": "all"
+						},
+						{
+							"key": "gen",
+							"value": "8"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "All sets for Charizard gen 7",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "8b4258b0-99ef-4daf-a968-58ce9fef4f2f",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () { \r",
+							"    pm.response.to.have.status(200); \r",
+							"});\r",
+							"\r",
+							"pm.test(\"Has correct propertites\", () => {\r",
+							"    const response = pm.response.json();\r",
+							"    pm.expect(response).to.have.property(\"1\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ":3000/set?tier=&name=charizard&size=all&gen=7",
+					"port": "3000",
+					"path": [
+						"set"
+					],
+					"query": [
+						{
+							"key": "tier",
+							"value": ""
+						},
+						{
+							"key": "name",
+							"value": "charizard"
+						},
+						{
+							"key": "size",
+							"value": "all"
+						},
+						{
+							"key": "gen",
+							"value": "7"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get random set for random pokemon",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ef598ef0-15fe-4a6c-8c9f-acb1185d2f81",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () { \r",
+							"    pm.response.to.have.status(200); \r",
+							"});\r",
+							"\r",
+							"pm.test(\"Has correct propertites\", () => {\r",
+							"    const response = pm.response.json();\r",
+							"    pm.expect(response).to.have.property(\"_id\");\r",
+							"    pm.expect(response).to.have.property(\"name\");\r",
+							"    pm.expect(response).to.have.property(\"moves\");\r",
+							"    pm.expect(response).to.have.property(\"ability\");\r",
+							"    pm.expect(response).to.have.property(\"nature\");\r",
+							"    pm.expect(response).to.have.property(\"evs\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ":3000/set?tier=&name=random&size=all&gen=7",
+					"port": "3000",
+					"path": [
+						"set"
+					],
+					"query": [
+						{
+							"key": "tier",
+							"value": ""
+						},
+						{
+							"key": "name",
+							"value": "random"
+						},
+						{
+							"key": "size",
+							"value": "all"
+						},
+						{
+							"key": "gen",
+							"value": "7"
 						}
 					]
 				}

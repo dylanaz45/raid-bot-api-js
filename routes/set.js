@@ -6,6 +6,14 @@ const client = require("redis").createClient(process.env.REDIS_URL);
 
 MongoConnection.connectToMongo();
 
+Object.size = function(obj) {
+    let size = 0, key;
+    for (key in obj) {
+        if (obj.hasOwnProperty(key)) size++;
+    }
+    return size;
+};
+
 /**
  * Route: /set
  * Endpoint: GET /set
@@ -95,6 +103,20 @@ router.post('/', (req, res) => {
            const collection = MongoConnection.db.collection('gen8')
            collection.insertMany(req.body, (err, result) => {
                if (result) {
+                   // Updates the cache for a Pokemon if the cached data is now outdated
+                   req.body.forEach(set => {
+                       client.get(set['name'] + '-sets8', (err2, result2) => {
+                           if (result2) {
+                               result2 = JSON.parse(result2)
+                               result2[Object.size(result2) + 1] = set
+                               client.set(set['name'] + '-sets8', JSON.stringify(result2), "EX", 60 * 60, (err3, result3) => {
+                                   if (result3) {
+                                       //pass
+                                   }
+                               })
+                           }
+                       })
+                   })
                    res.status(200).json({"count": req.body.length})
                }
                else {
