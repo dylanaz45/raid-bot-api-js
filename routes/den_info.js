@@ -14,20 +14,22 @@ MongoConnection.connectToMongo();
  */
 router.get('/', (req, res) => {
     const token = req.query.token;
-    jwt.verify(token, process.env.JWT_SECRET, function (err){
-        if (!err) {
-            client.get(req.query.den, (err, result) => {
-                if (result) {
-                    res.status(200).json(JSON.parse(result));
+    jwt.verify(token, process.env.JWT_SECRET, function (errJWT){
+        if (!errJWT) {
+            client.get(req.query.den, (errRedis, resultRedis) => {
+                if (resultRedis) {
+                    res.status(200).json(JSON.parse(resultRedis));
                 } else {
                     const collection = MongoConnection.db.collection('den_info')
                     const cursor = collection.findOne({den: req.query.den});
+
                     cursor.then(document => {
                         if (document != null) {
                             const ret = {
                                 "den": req.query.den,
                                 "ability": document.ability
                             }
+
                             client.set(req.query.den, JSON.stringify(ret), "EX", 60 * 20, (err, result) =>{
                                 if (result) {
                                     res.status(200).json(ret);

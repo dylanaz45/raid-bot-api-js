@@ -14,19 +14,19 @@ MongoConnection.connectToMongo();
  */
 router.get('/', (req, res) => {
     const token = req.query.token;
-    jwt.verify(token, process.env.JWT_SECRET, function (err){
-        if (!err) {
+    jwt.verify(token, process.env.JWT_SECRET, function (errJWT){
+        if (!errJWT) {
             const collection = MongoConnection.db.collection('raids')
             const cursor = collection.find();
 
             const promise = cursor.toArray();
             promise.then(raids => {
                 if (raids.length > 0) {
-                const ret = {}
-                raids.forEach((item, index) => {
-                    ret[index + 1] = [item._id, item.den];
-                })
-                res.status(200).json(ret);
+                    const ret = {}
+                    raids.forEach((item, index) => {
+                        ret[index + 1] = [item._id, item.den];
+                    })
+                    res.status(200).json(ret);
                 } else {
                     res.status(200).json({"0": "No active raids"})
                 }

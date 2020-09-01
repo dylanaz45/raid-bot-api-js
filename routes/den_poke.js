@@ -15,14 +15,15 @@ MongoConnection.connectToMongo();
  */
 router.get('/', (req, res) => {
     const token = req.query.token;
-    jwt.verify(token, process.env.JWT_SECRET, function (err){
-        if (!err) {
-            client.get(req.query.name.toTitleCase() + "-den", (err, result) => {
-                if (result) {
-                    res.status(200).json(JSON.parse(result));
+    jwt.verify(token, process.env.JWT_SECRET, function (errJWT){
+        if (!errJWT) {
+            client.get(req.query.name.toTitleCase() + "-den", (errRedis, resultRedis) => {
+                if (resultRedis) {
+                    res.status(200).json(JSON.parse(resultRedis));
                 } else {
                     const collection = MongoConnection.db.collection('den_poke')
                     const cursor = collection.findOne({name: req.query.name.toTitleCase()});
+
                     cursor.then(document => {
                         if (document != null) {
                             const ret = {
@@ -32,6 +33,7 @@ router.get('/', (req, res) => {
                                 "sword": document.sword,
                                 "shield": document.shield
                             }
+
                             client.set(req.query.name.toTitleCase() + "-den", JSON.stringify(ret), "EX", 60 * 20, (err, result) => {
                                 if (result) {
                                     res.status(200).json(ret);

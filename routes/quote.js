@@ -13,8 +13,8 @@ MongoConnection.connectToMongo();
  */
 router.get('/', (req, res) => {
     const token = req.query.token;
-    jwt.verify(token, process.env.JWT_SECRET, function (err){
-        if (!err) {
+    jwt.verify(token, process.env.JWT_SECRET, function (errJWT){
+        if (!errJWT) {
             const collection = MongoConnection.db.collection('quotes')
             const cursor = collection.aggregate([{$sample: {size: 1}}])
 

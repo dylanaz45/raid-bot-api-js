@@ -50,10 +50,17 @@ function getData(name) {
     }
 }
 
+/**
+ * Route: /data
+ * Endpoint: GET /data
+ * URL Parameters: token (JSON Web Token used for authentication)
+ *                 name (Pokemon name, ability, item, or move)
+ * Sends Pokemon related information about the requested object
+ */
 router.get("/", (req, res) => {
     const token = req.query.token;
-    jwt.verify(token, process.env.JWT_SECRET, (err) => {
-        if (!err) {
+    jwt.verify(token, process.env.JWT_SECRET, (errJWT) => {
+        if (!errJWT) {
             const ret = getData(req.query.name)
             if (typeof ret === 'undefined') {
                 res.status(404).send({"0": req.query.name + " does not exist"})

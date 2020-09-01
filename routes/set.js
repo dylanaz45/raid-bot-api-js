@@ -6,6 +6,7 @@ const client = require("redis").createClient(process.env.REDIS_URL);
 
 MongoConnection.connectToMongo();
 
+// Counts the amount of keys in an Object
 Object.size = function(obj) {
     let size = 0, key;
     for (key in obj) {
@@ -17,9 +18,12 @@ Object.size = function(obj) {
 /**
  * Route: /set
  * Endpoint: GET /set
- * URL Parameters: token (JSON Web Token used for authentication), name (the name of a Pokemon),
- *                 tier (the Smogon tier to check), size (to either response with one set or all available sets)
- * Sends a Smogon set for the specified tier. Will either send one or all sets
+ * URL Parameters: token (JSON Web Token used for authentication),
+ *                 name (the name of a Pokemon),
+ *                 tier (the Smogon tier to check),
+ *                 gen (the generation for the Pokemon; only 7 and 8 are allowed)
+ *                 size (to either response with one set or all available sets)
+ * Sends a Smogon set for the specified tier and generation. Will either send one or all sets
  *
  * Verifies the JWT then checks the Redis cache to see if sets for the specified Pokemon and tier is available. If not,
  * a query is made to the MongoDB database. If a Pokemon set for the specified tier exists, all the sets for that
@@ -27,22 +31,23 @@ Object.size = function(obj) {
  */
 router.get('/', (req, res) => {
     const token = req.query.token;
-    jwt.verify(token, process.env.JWT_SECRET, function (err){
-        if (!err) {
-            client.get(req.query.name.toTitleCase() + '-sets' + req.query.tier + req.query.gen, (err, result) => {
-                if (result) {
-                    result = JSON.parse(result)
+    jwt.verify(token, process.env.JWT_SECRET, function (errJWT){
+        if (!errJWT) {
+            client.get(req.query.name.toTitleCase() + '-sets' + req.query.tier + req.query.gen, (errReds, resultRedis) => {
+                if (resultRedis) {
+                    resultRedis = JSON.parse(resultRedis)
 
                     if (req.query.size === "one") {
-                        let keys = Object.keys(result)
+                        let keys = Object.keys(resultRedis)
                         res.status(200).json(result[keys[keys.length * Math.random() << 0]]);
                     }
                     else if (req.query.size === "all") {
-                        res.status(200).json(result);
+                        res.status(200).json(resultRedis);
                     }
                 }
                 else {
                     const collection = MongoConnection.db.collection('gen' + req.query.gen + req.query.tier)
+
                     if (req.query.name.toTitleCase() === "Random") {
                         const cursor = collection.aggregate([{$sample: {size: 1}}])
                         cursor.toArray((err, document) =>{
@@ -94,22 +99,24 @@ router.get('/', (req, res) => {
  * Endpoint: POST /set
  * URL Parameters: token (JSON Web Token used for authentication)
  *
- *
+ * Inserts Showdown/Smogon sets of Pokemon into a MongoDB collection. This is intended to be used by my poke-insert
+ * script in my pokepaste-parser GitHub repo
  */
 router.post('/', (req, res) => {
    const token = req.query.token;
-   jwt.verify(token, process.env.JWT_SECRET, (err) => {
-       if (!err) {
+   jwt.verify(token, process.env.JWT_SECRET, (errJWT) => {
+       if (!errJWT) {
            const collection = MongoConnection.db.collection('gen8')
-           collection.insertMany(req.body, (err, result) => {
-               if (result) {
+           collection.insertMany(req.body, (errDB, resultDB) => {
+               if (resultDB) {
                    // Updates the cache for a Pokemon if the cached data is now outdated
                    req.body.forEach(set => {
-                       client.get(set['name'] + '-sets8', (err2, result2) => {
-                           if (result2) {
-                               result2 = JSON.parse(result2)
-                               result2[Object.size(result2) + 1] = set
-                               client.set(set['name'] + '-sets8', JSON.stringify(result2), "EX", 60 * 60, (err3, result3) => {
+                       client.get(set['name'] + '-sets8', (errRedis, resultRedis) => {
+                           if (resultRedis) {
+                               resultRedis = JSON.parse(resultRedis)
+                               resultRedis[Object.size(resultRedis) + 1] = set
+
+                               client.set(set['name'] + '-sets8', JSON.stringify(resultRedis), "EX", 60 * 60, (err3, result3) => {
                                    if (result3) {
                                        //pass
                                    }
