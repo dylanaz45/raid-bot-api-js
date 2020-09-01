@@ -54,7 +54,7 @@ router.get('/', (req, res) => {
                             res.status(200).json(document[0])
                         })
                     }
-                    else {git
+                    else {
                         const cursor = collection.find({name: req.query.name.toTitleCase()})
                         const promise = cursor.toArray();
 
