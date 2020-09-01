@@ -39,7 +39,7 @@ router.get('/', (req, res) => {
 
                     if (req.query.size === "one") {
                         let keys = Object.keys(resultRedis)
-                        res.status(200).json(result[keys[keys.length * Math.random() << 0]]);
+                        res.status(200).json(resultRedis[keys[keys.length * Math.random() << 0]]);
                     }
                     else if (req.query.size === "all") {
                         res.status(200).json(resultRedis);
@@ -54,7 +54,7 @@ router.get('/', (req, res) => {
                             res.status(200).json(document[0])
                         })
                     }
-                    else {
+                    else {git
                         const cursor = collection.find({name: req.query.name.toTitleCase()})
                         const promise = cursor.toArray();
 
