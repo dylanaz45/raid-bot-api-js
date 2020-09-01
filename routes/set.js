@@ -49,13 +49,35 @@ router.get('/', (req, res) => {
                     const collection = MongoConnection.db.collection('gen' + req.query.gen + req.query.tier)
 
                     if (req.query.name.toTitleCase() === "Random") {
-                        const cursor = collection.aggregate([{$sample: {size: 1}}])
+                        let pipeline = [
+                            {
+                                '$sample': {
+                                    'size': 1
+                                }
+                            }, {
+                                '$project': {
+                                    '_id': 0
+                                }
+                            }
+                        ]
+                        const cursor = collection.aggregate(pipeline)
                         cursor.toArray((err, document) =>{
                             res.status(200).json(document[0])
                         })
                     }
                     else {
-                        const cursor = collection.find({name: req.query.name.toTitleCase()})
+                        let pipeline = [
+                            {
+                                '$match': {
+                                    'name': req.query.name.toTitleCase()
+                                }
+                            }, {
+                                '$project': {
+                                    '_id': 0
+                                }
+                            }
+                        ]
+                        const cursor = collection.aggregate(pipeline)
                         const promise = cursor.toArray();
 
                         promise.then(sets => {

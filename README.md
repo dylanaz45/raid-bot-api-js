@@ -3,10 +3,11 @@
 [![Known Vulnerabilities](https://snyk.io/test/github/dylanaz45/raid-bot-api-js/badge.svg?targetFile=package.json)](https://snyk.io/test/github/dylanaz45/raid-bot-api-js?targetFile=package.json)
 
 A REST API that connects [Raid Bot](https://github.com/dylanaz45/raid-bot) to a MongoDB database. BeautifulSoup was 
-used to obtain majority of the data for the database. Postman is used for testing.
+used to obtain a lot of the data for the database. Data on competitive Pokemon are obtained via parsers. Testing is 
+performed consistently with the use of Postman.
 
 ## Features 
-* With the introduction of Max Raid Battles in Pokémon Sword and Shield, which is a featture that allows a person to 
+* With the introduction of Max Raid Battles in Pokémon Sword and Shield, which is a feature that allows a person to 
 host a battle against a Pokémon and invite up to three other people to battle and catch that Pokémon, many hosts will 
 organize these events on Discord. This API features a system that allows hosts to register what Max Raid Battle den they
 are hosting and allows users to view what raid battles are currently active. This system could aid in organizing these 
@@ -15,7 +16,8 @@ events and prevent confusion with regard to what raids are being hosted as multi
 be found in a den and what dens can a Pokemon be found in.
 * Shiny sprites of requested Pokémon including regional forms, mega evolutions, and other forms.
 * Data on Pokemon characteristics, moves, items, and abilities
-* Pokemon Showdown sets
+* Pokemon Showdown sets for different tiers via a [parser and inserter](https://github.com/dylanaz45/pokepaste-parser)
+* The most recent Smogon usage statistics (from August 2020)
 * A database of quotes and dad jokes.
 
 ## Routes
@@ -64,6 +66,11 @@ be found in a den and what dens can a Pokemon be found in.
 |--------|------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------|
 | GET    | Get a random Showdown/Smogon set (or all sets) for a Pokemon in a specific tier and generation | {token: \<API token\>, name: \<Pokemon name\>, tier: \<Smogon tier\>, gen: \<Pokemon generation number\>, size: \<either "one" or "all" to specify how many sets to send\>} | None                            |
 | POST   | Insert Showdown sets into a MongoDB collection                                                 | {token: \<API token\>}                                                                                                                                                      | JSON formatted array of objects |
+
+### ```/stats```
+| Method | Description                                                                             | Parameters                                                            |
+|--------|-----------------------------------------------------------------------------------------|-----------------------------------------------------------------------|
+| GET    | Get statistics on a Pokemon in a specific tier or get the rankings of Pokemon in a tier | {token: \<API token\>, name: \<Pokemon name\>, tier: \<Smogon tier\>} |
 
 ### Random Data
 

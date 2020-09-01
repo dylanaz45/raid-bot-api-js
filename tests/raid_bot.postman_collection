@@ -1000,7 +1000,6 @@
 							"\r",
 							"pm.test(\"Has correct propertites\", () => {\r",
 							"    const response = pm.response.json();\r",
-							"    pm.expect(response).to.have.property(\"_id\");\r",
 							"    pm.expect(response).to.have.property(\"name\");\r",
 							"    pm.expect(response).to.have.property(\"moves\");\r",
 							"    pm.expect(response).to.have.property(\"ability\");\r",
@@ -1203,7 +1202,6 @@
 							"\r",
 							"pm.test(\"Has correct propertites\", () => {\r",
 							"    const response = pm.response.json();\r",
-							"    pm.expect(response).to.have.property(\"_id\");\r",
 							"    pm.expect(response).to.have.property(\"name\");\r",
 							"    pm.expect(response).to.have.property(\"moves\");\r",
 							"    pm.expect(response).to.have.property(\"ability\");\r",
@@ -1364,7 +1362,6 @@
 							"\r",
 							"pm.test(\"Has correct propertites\", () => {\r",
 							"    const response = pm.response.json();\r",
-							"    pm.expect(response).to.have.property(\"_id\");\r",
 							"    pm.expect(response).to.have.property(\"name\");\r",
 							"    pm.expect(response).to.have.property(\"moves\");\r",
 							"    pm.expect(response).to.have.property(\"ability\");\r",
@@ -1401,6 +1398,98 @@
 						{
 							"key": "gen",
 							"value": "7"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get VGC stats on Porygon-Z",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9e3a9edc-91e7-474b-a19e-be0361837982",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () { \r",
+							"    pm.response.to.have.status(200); \r",
+							"});\r",
+							"\r",
+							"pm.test(\"Has correct propertites\", () => {\r",
+							"    const response = pm.response.json();\r",
+							"    pm.expect(response).to.have.property(\"name\");\r",
+							"    pm.expect(response).to.have.property(\"moves\");\r",
+							"    pm.expect(response).to.have.property(\"abilities\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ":3000/stats?tier=vgc&name=porygon-z",
+					"port": "3000",
+					"path": [
+						"stats"
+					],
+					"query": [
+						{
+							"key": "tier",
+							"value": "vgc"
+						},
+						{
+							"key": "name",
+							"value": "porygon-z"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get rankings for OU",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "de912bb2-8506-4e34-a690-fae56d56a1fd",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () { \r",
+							"    pm.response.to.have.status(200); \r",
+							"});\r",
+							"\r",
+							"pm.test(\"Has correct propertites\", () => {\r",
+							"    const response = pm.response.json();\r",
+							"    pm.expect(response[0]).to.have.property(\"name\");\r",
+							"    pm.expect(response[0]).to.have.property(\"moves\");\r",
+							"    pm.expect(response[0]).to.have.property(\"abilities\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ":3000/stats?tier=ou&name=",
+					"port": "3000",
+					"path": [
+						"stats"
+					],
+					"query": [
+						{
+							"key": "tier",
+							"value": "ou"
+						},
+						{
+							"key": "name",
+							"value": ""
 						}
 					]
 				}

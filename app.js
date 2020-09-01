@@ -13,6 +13,7 @@ const quote = require("./routes/quote");
 const login = require("./routes/login");
 const data = require("./routes/data");
 const set = require("./routes/set");
+const stats = require("./routes/stats");
 const bodyParser = require("body-parser");
 
 app.use(bodyParser.json());
@@ -29,6 +30,7 @@ app.use('/quote', quote);
 app.use('/login', login);
 app.use('/data', data);
 app.use('/set', set);
+app.use('/stats', stats);
 
 const port = process.env.PORT || 3000
 app.listen(port, () => {

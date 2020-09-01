@@ -6499,6 +6499,38 @@ let BattleItems = {
 		isNonstandard: "CAP",
 		desc: "If held by a Crucibelle, this item allows it to Mega Evolve in battle.",
 	},
+
+	throatspray: {
+		name: "Throat Spray"
+	},
+
+	utilityumbrella: {
+		name: "Utility Umbrella"
+	},
+
+	rustedsword: {
+		name: "Rusted Sword"
+	},
+
+	rustedshield: {
+		name: "Rusted Shield"
+	},
+
+	roomservice: {
+		name: "Room Service"
+	},
+
+	heavydutyboots: {
+		name: "Heavy-Duty Boots"
+	},
+
+	ejectpack: {
+		name: "Eject Pack"
+	},
+
+	blunderpolicy: {
+		name: "Blunder Policy"
+	}
 };
 
 exports.BattleItems = BattleItems;
