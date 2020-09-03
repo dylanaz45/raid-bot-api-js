@@ -1,10 +1,9 @@
 require('dotenv').config();
 const router = require("express").Router();
-const {MongoConnection} = require("../common/utils");
 const jwt = require("jsonwebtoken");
+const logger = require("../common/log")
 const client = require("redis").createClient(process.env.REDIS_URL);
-
-MongoConnection.connectToMongo();
+require("../common/toTitle");
 
 // Counts the amount of keys in an Object
 Object.size = function(obj) {
@@ -31,87 +30,75 @@ Object.size = function(obj) {
  */
 router.get('/', (req, res) => {
     const token = req.query.token;
-    jwt.verify(token, process.env.JWT_SECRET, function (errJWT){
-        if (!errJWT) {
-            client.get(req.query.name.toTitleCase() + '-sets' + req.query.tier + req.query.gen, (errReds, resultRedis) => {
-                if (resultRedis) {
-                    resultRedis = JSON.parse(resultRedis)
+    try {
+        jwt.verify(token, process.env.JWT_SECRET)
+    } catch (err) {
+        res.status(401).send("Unauthorized")
+        return
+    }
 
-                    if (req.query.size === "one") {
-                        let keys = Object.keys(resultRedis)
-                        res.status(200).json(resultRedis[keys[keys.length * Math.random() << 0]]);
+    client.get(req.query.name.toTitleCase() + '-sets' + req.query.tier + req.query.gen, async (err, result) => {
+        if (result) {
+            if (req.query.size === "one") {
+                result = JSON.parse(result)
+                let keys = Object.keys(result)
+                res.status(200).json(result[keys[keys.length * Math.random() << 0]]);
+            }
+            else if (req.query.size === "all") {
+                res.status(200).json(JSON.parse(result));
+            }
+        } else {
+            const db = req.app.locals.db.collection('gen' + req.query.gen + req.query.tier)
+            if (req.query.name.toTitleCase() === "Random") {
+                let pipeline = [
+                    {
+                        '$sample': {
+                            'size': 1
+                        }
+                    }, {
+                        '$project': {
+                            '_id': 0
+                        }
                     }
-                    else if (req.query.size === "all") {
-                        res.status(200).json(resultRedis);
+                ]
+                const cursor = await db.aggregate(pipeline)
+                cursor.toArray()
+                    .then(document => {
+                        res.status(200).json(document[0])
+                    })
+            } else {
+                let pipeline = [
+                    {
+                        '$match': {
+                            'name': req.query.name.toTitleCase()
+                        }
+                    }, {
+                        '$project': {
+                            '_id': 0
+                        }
                     }
-                }
-                else {
-                    const collection = MongoConnection.db.collection('gen' + req.query.gen + req.query.tier)
+                ]
+                const cursor = await db.aggregate(pipeline)
+                cursor.toArray()
+                    .then(async sets => {
+                        if (sets.length > 0) {
+                            const ret = {}
+                            sets.forEach((item, index) => {
+                                ret[index + 1] = item;
+                            })
 
-                    if (req.query.name.toTitleCase() === "Random") {
-                        let pipeline = [
-                            {
-                                '$sample': {
-                                    'size': 1
-                                }
-                            }, {
-                                '$project': {
-                                    '_id': 0
-                                }
+                            await client.set(req.query.name.toTitleCase() + '-sets' + req.query.tier + req.query.gen, JSON.stringify(ret), "EX", 60 * 60)
+                            if (req.query.size === "one") {
+                                const keys = Object.keys(ret)
+                                res.status(200).json(ret[keys[keys.length * Math.random() << 0]])
+                            } else if (req.query.size === "all") {
+                                res.status(200).json(ret)
                             }
-                        ]
-                        const cursor = collection.aggregate(pipeline)
-                        cursor.toArray((err, document) =>{
-                            res.status(200).json(document[0])
-                        })
-                    }
-                    else {
-                        let pipeline = [
-                            {
-                                '$match': {
-                                    'name': req.query.name.toTitleCase()
-                                }
-                            }, {
-                                '$project': {
-                                    '_id': 0
-                                }
-                            }
-                        ]
-                        const cursor = collection.aggregate(pipeline)
-                        const promise = cursor.toArray();
-
-                        promise.then(sets => {
-                            if (sets.length > 0) {
-                                const ret = {}
-                                sets.forEach((item, index) => {
-                                    ret[index + 1] = item;
-                                })
-
-                                client.set(req.query.name.toTitleCase() + '-sets' + req.query.tier + req.query.gen, JSON.stringify(ret), "EX", 60 * 60, (err, result) => {
-                                    if (result) {
-                                        if (req.query.size === "one") {
-                                            const keys = Object.keys(ret)
-                                            res.status(200).json(ret[keys[keys.length * Math.random() << 0]])
-                                        }
-                                        else if (req.query.size === "all") {
-                                            res.status(200).json(ret)
-                                        }
-                                    }
-                                    else {
-                                        console.log(err)
-                                    }
-                                })
-                            }
-                            else {
-                                res.status(404).json({"0": "Pokemon not found"});
-                            }
-                        })
-                    }
-                }
-            })
-        }
-        else {
-            res.status(401).send("Unauthorized")
+                        } else {
+                            res.status(404).json({"0": "Pokemon not found"});
+                        }
+                    })
+            }
         }
     })
 })

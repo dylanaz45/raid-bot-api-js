@@ -1,11 +1,9 @@
 require('dotenv').config();
 const router = require("express").Router();
-const {MongoConnection} = require("../common/utils");
 const jwt = require("jsonwebtoken");
+const logger = require("../common/log")
 const client = require("redis").createClient(process.env.REDIS_URL);
 require("../common/toTitle");
-
-MongoConnection.connectToMongo();
 
 /**
  * Route: /sprite
@@ -15,32 +13,27 @@ MongoConnection.connectToMongo();
  */
 router.get('/', (req, res) => {
     const token = req.query.token;
-    jwt.verify(token, process.env.JWT_SECRET, function (errJWT){
-        if (!errJWT) {
-            client.get(req.query.name.toTitleCase() + "-sprite", (errRedis, resultRedis) => {
-                if (resultRedis) {
-                    res.status(200).json({"id": resultRedis});
-                } else {
-                    const collection = MongoConnection.db.collection('catch')
-                    const cursor = collection.findOne({name: req.query.name.toTitleCase()});
+    try {
+        jwt.verify(token, process.env.JWT_SECRET)
+    } catch (err) {
+        res.status(401).send("Unauthorized")
+        return
+    }
 
-                    cursor.then(document => {
-                        if (document != null) {
-                            client.set(req.query.name.toTitleCase() + "-sprite", document.id, "EX", 60 * 20, (err, result) => {
-                                if (result) {
-                                    res.status(200).json({"id": document.id});
-                                } else {
-                                    console.log(err)
-                                }
-                            })
-                        } else {
-                            res.status(404).json({"0": "Pokemon does not exist"});
-                        }
-                    })
-                }
-            })
+    client.get(req.query.name.toTitleCase() + "-sprite", async (err, result) => {
+        if (result) {
+            res.status(200).json({"id": result});
         } else {
-            res.status(401).send("Unauthorized")
+            const db = req.app.locals.db;
+            let cursor = await db.collection("catch").findOne({
+                name: req.query.name.toTitleCase()
+            })
+            if (cursor == null) {
+                res.status(404).json({"0": "Pokemon does not exist"});
+            } else {
+                await client.set(req.query.name.toTitleCase() + "-sprite", cursor.id, "EX", 60 * 20)
+                res.status(200).json({"id": cursor.id});
+            }
         }
     })
 })

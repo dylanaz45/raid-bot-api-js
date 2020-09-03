@@ -1,9 +1,7 @@
 require('dotenv').config();
 const router = require("express").Router();
-const {MongoConnection} = require("../common/utils");
 const jwt = require("jsonwebtoken");
-
-MongoConnection.connectToMongo();
+const logger = require("../common/log")
 
 /**
  * Route: /dadjoke
@@ -11,20 +9,30 @@ MongoConnection.connectToMongo();
  * URL Parameters: token (JSON Web Token used for authentication)
  * Sends a random dad joke
  */
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
     const token = req.query.token;
-    jwt.verify(token, process.env.JWT_SECRET, function (errJWT){
-        if (!errJWT) {
-            const collection = MongoConnection.db.collection('dad_jokes')
-            const cursor = collection.aggregate([{$sample: {size: 1}}])
 
-            cursor.toArray(function (err, document){
-                res.status(200).json({joke: document[0].joke})
+    try {
+        jwt.verify(token, process.env.JWT_SECRET);
+    } catch (err) {
+        res.status(401).send("Unauthorized")
+    }
+
+    try {
+        const db = req.app.locals.db
+        const cursor = await db.collection('dad_jokes').aggregate([{
+            $sample: {size: 1}
+        }])
+
+        cursor.toArray()
+            .then(document => {
+                res.status(200).json({
+                    joke: document[0].joke
+                })
             })
-        } else {
-            res.status(401).send("Unauthorized")
-        }
-    })
+    } catch (err) {
+        logger.warn("Failed to connect to dad jokes collection")
+    }
 })
 
 module.exports = router;

@@ -2,10 +2,10 @@
   "name": "raid-bot-api-js",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "server.js",
   "scripts": {
     "test": "newman run tests\\raid_bot_test.postman_collection",
-    "start": "node app.js",
+    "start": "node server.js",
     "localtest": "newman run tests\\raid_bot.postman_collection -e tests\\raid_bot_key.postman_environment.json",
     "herokutest": "newman run tests\\raid_bot_heroku.postman_collection -e tests\\raid_bot_key.postman_environment.json"
   },
@@ -36,7 +36,9 @@
     "lodash": "^4.17.20",
     "socket.io-client": "^2.3.0",
     "pm2": "^4.4.1",
-    "redis": "^3.0.2"
+    "redis": "^3.0.2",
+    "bluebird": "^3.7.2",
+    "winston": "^3.3.3"
   },
   "devDependencies": {
     "eslint": "^7.7.0"

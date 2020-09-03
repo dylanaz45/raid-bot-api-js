@@ -59,18 +59,20 @@ function getData(name) {
  */
 router.get("/", (req, res) => {
     const token = req.query.token;
-    jwt.verify(token, process.env.JWT_SECRET, (errJWT) => {
-        if (!errJWT) {
-            const ret = getData(req.query.name)
-            if (typeof ret === 'undefined') {
-                res.status(404).send({"0": req.query.name + " does not exist"})
-            } else {
-                res.status(200).send(ret)
-            }
-        } else {
-            res.status(401).send("Unauthorized")
-        }
-    })
+    try {
+        jwt.verify(token, process.env.JWT_SECRET)
+    } catch (err) {
+        res.status(401).send("Unauthorized")
+        return
+    }
+
+
+    const ret = getData(req.query.name)
+    if (typeof ret === 'undefined') {
+        res.status(404).send({"0": req.query.name + " does not exist"})
+    } else {
+        res.status(200).send(ret)
+    }
 })
 
 module.exports = router

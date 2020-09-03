@@ -1,10 +1,9 @@
 require('dotenv').config();
 const router = require("express").Router();
-const {MongoConnection} = require("../common/utils");
 const jwt = require("jsonwebtoken");
+const logger = require("../common/log")
 const client = require("redis").createClient(process.env.REDIS_URL);
-
-MongoConnection.connectToMongo();
+require("../common/toTitle");
 
 /**
  * Route: /stats
@@ -22,83 +21,70 @@ MongoConnection.connectToMongo();
  */
 router.get('/', (req, res) => {
     const token = req.query.token;
-    jwt.verify(token, process.env.JWT_SECRET, function (errJWT){
-        if (!errJWT) {
-            if (req.query.name === '') {
-                client.get("-tier" + req.query.tier, (errRedis, resultRedis) => {
-                    if (resultRedis) {
-                        resultRedis = JSON.parse(resultRedis);
-                        res.status(200).json(resultRedis);
-                    } else {
-                        const collection = MongoConnection.db.collection("statsgen8" + req.query.tier)
-                        let pipeline = [
-                            {
-                                '$sort': {
-                                    'usage': -1
-                                }
-                            }, {
-                                '$limit': 50
-                            }, {
-                                '$project': {
-                                    '_id': 0
-                                }
-                            }
-                        ]
-                        const cursor = collection.aggregate(pipeline)
+    try {
+        jwt.verify(token, process.env.JWT_SECRET)
+    } catch (err) {
+        res.status(401).send("Unauthorized")
+        return
+    }
 
-                        cursor.toArray((err, documents) => {
-                            client.set("-tier" + req.query.tier, JSON.stringify(documents), "EX", 60 * 60, (errSet, resultSet) => {
-                                if (resultSet) {
-                                    res.status(200).json(documents);
-                                } else {
-                                    console.log(errSet);
-                                }
-                            })
-                        })
-                    }
-                })
+    if (req.query.name === '') {
+        client.get("-tier" + req.query.tier, async (err, result) => {
+            if (result) {
+                res.status(200).json(JSON.parse(result));
             } else {
-                client.get(req.query.name.toTitleCase() + "-tier" + req.query.tier, (errRedis, resultRedis) => {
-                    if (resultRedis) {
-                        resultRedis = JSON.parse(resultRedis);
-                        res.status(200).json(resultRedis)
-                    } else {
-                        const collection = MongoConnection.db.collection("statsgen8" + req.query.tier)
-                        let pipeline = [
-                            {
-                                '$match': {
-                                    'name': req.query.name.toTitleCase()
-                                }
-                            }, {
-                                '$project': {
-                                    '_id': 0
-                                }
-                            }
-                        ]
-                        const cursor = collection.aggregate(pipeline)
-                        const promise = cursor.toArray();
-
-                        promise.then(document => {
-                            if (document.length === 1) {
-                                client.set(req.query.name.toTitleCase() + "-tier" + req.query.tier, JSON.stringify(document[0]), "EX", 60 * 60, (errSet, resultSet) => {
-                                    if (resultSet) {
-                                        res.status(200).json(document[0]);
-                                    } else {
-                                        console.log(errSet);
-                                    }
-                                })
-                            } else {
-                                res.status(404).send("Pokemon could not be found.")
-                            }
-                        })
+                const db = req.app.locals.db.collection("statsgen8" + req.query.tier)
+                let pipeline = [
+                    {
+                        '$sort': {
+                            'usage': -1
+                        }
+                    }, {
+                        '$limit': 50
+                    }, {
+                        '$project': {
+                            '_id': 0
+                        }
                     }
-                })
+                ]
+                const cursor = await db.aggregate(pipeline)
+                cursor.toArray()
+                    .then(async documents => {
+                        await client.set("-tier" + req.query.tier, JSON.stringify(documents), "EX", 60 * 60)
+                        res.status(200).json(documents);
+                    })
             }
-        }
-        else {
-            res.status(401).send("Unauthorized")
-        }
-    })
+        })
+    } else {
+        client.get(req.query.name.toTitleCase() + "-tier" + req.query.tier, async (err, result) => {
+            if (result) {
+                res.status(200).json(JSON.parse(result));
+            } else {
+                const db = req.app.locals.db.collection("statsgen8" + req.query.tier)
+                let pipeline = [
+                    {
+                        '$match': {
+                            'name': req.query.name.toTitleCase()
+                        }
+                    }, {
+                        '$project': {
+                            '_id': 0
+                        }
+                    }
+                ]
+                const cursor = db.aggregate(pipeline)
+                cursor.toArray()
+                    .then(async document => {
+                        if (document.length === 1) {
+                            await client.set(req.query.name.toTitleCase() + "-tier" + req.query.tier, JSON.stringify(document[0]), "EX", 60 * 60)
+                            res.status(200).json(document[0]);
+                        } else {
+                            res.status(404).send("Pokemon could not be found.")
+                        }
+                    })
+            }
+        })
+    }
 })
 
 module.exports = router;

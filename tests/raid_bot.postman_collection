@@ -30,14 +30,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/",
+					"raw": "http://localhost:3000/api",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
-						""
+						"api"
 					]
 				}
 			},
@@ -69,13 +69,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/quote",
+					"raw": "http://localhost:3000/api/quote",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
+						"api",
 						"quote"
 					]
 				}
@@ -107,13 +108,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/dadjoke",
+					"raw": "http://localhost:3000/api/dadjoke",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
+						"api",
 						"dadjoke"
 					]
 				}
@@ -149,13 +151,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/den_poke?name=charmander",
+					"raw": "http://localhost:3000/api/den_poke?name=charmander",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
+						"api",
 						"den_poke"
 					],
 					"query": [
@@ -193,13 +196,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/den_poke?name=god",
+					"raw": "http://localhost:3000/api/den_poke?name=god",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
+						"api",
 						"den_poke"
 					],
 					"query": [
@@ -238,13 +242,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/den_info?den=156",
+					"raw": "http://localhost:3000/api/den_info?den=156",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
+						"api",
 						"den_info"
 					],
 					"query": [
@@ -282,13 +287,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/den_info?den=176",
+					"raw": "http://localhost:3000/api/den_info?den=176",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
+						"api",
 						"den_info"
 					],
 					"query": [
@@ -326,13 +332,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/sprite?name=giratina origin",
+					"raw": "http://localhost:3000/api/sprite?name=giratina origin",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
+						"api",
 						"sprite"
 					],
 					"query": [
@@ -370,13 +377,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/sprite?name=god",
+					"raw": "http://localhost:3000/api/sprite?name=god",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
+						"api",
 						"sprite"
 					],
 					"query": [
@@ -414,13 +422,14 @@
 				"method": "POST",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/start?_id=1&name=Test&den=1",
+					"raw": "http://localhost:3000/api/start?_id=1&name=Test&den=1",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
+						"api",
 						"start"
 					],
 					"query": [
@@ -466,13 +475,14 @@
 				"method": "POST",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/start?_id=1&name=Test&den=5",
+					"raw": "http://localhost:3000/api/start?_id=1&name=Test&den=5",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
+						"api",
 						"start"
 					],
 					"query": [
@@ -518,13 +528,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/active",
+					"raw": "http://localhost:3000/api/active",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
+						"api",
 						"active"
 					]
 				}
@@ -556,13 +567,14 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/end?_id=1",
+					"raw": "http://localhost:3000/api/end?_id=1",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
+						"api",
 						"end"
 					],
 					"query": [
@@ -600,13 +612,14 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/end?_id=1",
+					"raw": "http://localhost:3000/api/end?_id=1",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
+						"api",
 						"end"
 					],
 					"query": [
@@ -646,13 +659,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/data?name=ironfist",
+					"raw": "http://localhost:3000/api/data?name=ironfist",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
+						"api",
 						"data"
 					],
 					"query": [
@@ -690,13 +704,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/data?name=god",
+					"raw": "http://localhost:3000/api/data?name=god",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
+						"api",
 						"data"
 					],
 					"query": [
@@ -735,13 +750,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/data?name=psychicseed",
+					"raw": "http://localhost:3000/api/data?name=psychicseed",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
+						"api",
 						"data"
 					],
 					"query": [
@@ -779,13 +795,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/data?name=god",
+					"raw": "http://localhost:3000/api/data?name=god",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
+						"api",
 						"data"
 					],
 					"query": [
@@ -830,13 +847,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/data?name=fakeout",
+					"raw": "http://localhost:3000/api/data?name=fakeout",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
+						"api",
 						"data"
 					],
 					"query": [
@@ -874,13 +892,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/data?name=god",
+					"raw": "http://localhost:3000/api/data?name=god",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
+						"api",
 						"data"
 					],
 					"query": [
@@ -923,13 +942,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/data?name=charizard",
+					"raw": "http://localhost:3000/api/data?name=charizard",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
+						"api",
 						"data"
 					],
 					"query": [
@@ -967,13 +987,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/data?name=god",
+					"raw": "http://localhost:3000/api/data?name=god",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
+						"api",
 						"data"
 					],
 					"query": [
@@ -1015,9 +1036,10 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": ":3000/set?tier=&name=charizard&size=one&gen=8",
+					"raw": ":3000/api/set?tier=&name=charizard&size=one&gen=8",
 					"port": "3000",
 					"path": [
+						"api",
 						"set"
 					],
 					"query": [
@@ -1062,9 +1084,10 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": ":3000/set?tier=&name=charizarda&size=one&gen=8",
+					"raw": ":3000/api/set?tier=&name=charizarda&size=one&gen=8",
 					"port": "3000",
 					"path": [
+						"api",
 						"set"
 					],
 					"query": [
@@ -1114,9 +1137,10 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": ":3000/set?tier=&name=charizard&size=all&gen=8",
+					"raw": ":3000/api/set?tier=&name=charizard&size=all&gen=8",
 					"port": "3000",
 					"path": [
+						"api",
 						"set"
 					],
 					"query": [
@@ -1161,9 +1185,10 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": ":3000/set?tier=ou&name=charizarda&size=all&gen=8",
+					"raw": ":3000/api/set?tier=ou&name=charizarda&size=all&gen=8",
 					"port": "3000",
 					"path": [
+						"api",
 						"set"
 					],
 					"query": [
@@ -1189,7 +1214,7 @@
 			"response": []
 		},
 		{
-			"name": "Random Smogon set from vgc collection",
+			"name": "Random Smogon set",
 			"event": [
 				{
 					"listen": "test",
@@ -1217,9 +1242,10 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": ":3000/set?tier=vgc2020&name=charizard&size=one&gen=8",
+					"raw": ":3000/api/set?tier=vgc2020&name=charizard&size=one&gen=8",
 					"port": "3000",
 					"path": [
+						"api",
 						"set"
 					],
 					"query": [
@@ -1269,9 +1295,10 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": ":3000/set?tier=vgc2020&name=charizard&size=all&gen=8",
+					"raw": ":3000/api/set?tier=vgc2020&name=charizard&size=all&gen=8",
 					"port": "3000",
 					"path": [
+						"api",
 						"set"
 					],
 					"query": [
@@ -1321,9 +1348,10 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": ":3000/set?tier=&name=charizard&size=all&gen=7",
+					"raw": ":3000/api/set?tier=&name=charizard&size=all&gen=7",
 					"port": "3000",
 					"path": [
+						"api",
 						"set"
 					],
 					"query": [
@@ -1377,9 +1405,10 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": ":3000/set?tier=&name=random&size=all&gen=7",
+					"raw": ":3000/api/set?tier=&name=random&size=all&gen=7",
 					"port": "3000",
 					"path": [
+						"api",
 						"set"
 					],
 					"query": [
@@ -1431,9 +1460,10 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": ":3000/stats?tier=vgc&name=porygon-z",
+					"raw": ":3000/api/stats?tier=vgc&name=porygon-z",
 					"port": "3000",
 					"path": [
+						"api",
 						"stats"
 					],
 					"query": [
@@ -1477,9 +1507,10 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": ":3000/stats?tier=ou&name=",
+					"raw": ":3000/api/stats?tier=ou&name=",
 					"port": "3000",
 					"path": [
+						"api",
 						"stats"
 					],
 					"query": [
