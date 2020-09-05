@@ -6,7 +6,7 @@ const router = require("express").Router();
  * The index of the application
  */
 router.get('/', (req, res) => {
-    res.status(200).json({msg: 'Connected'})
+    res.status(200).send('Connected')
 })
 
 module.exports = router;

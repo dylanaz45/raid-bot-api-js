@@ -24,62 +24,62 @@ be found in a den and what dens can a Pokemon be found in.
 
 ### Raid Management System
 
-#### ```/start```
+#### ```/api/raids/start```
 | Method | Description                                          | Parameters                                                                                                                     |
 |--------|------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------|
 | POST   | Register a user to signify that their raid is active | {token: \<API token\>, _id: \<Discord ID\>, name: \<name of the Discord user\>, den: \<Pokemon den that the user is hosting\>} |
 
-#### ```/end```
+#### ```/api/raids/end```
 | Method | Description                                   | Parameters                                  |
 |--------|-----------------------------------------------|---------------------------------------------|
 | DELETE | Delete a user's registered raid if one exists | {token: \<API token\>, _id: \<Discord ID\>} |
 
-#### ```/active```
+#### ```/api/raids/active```
 | Method | Description                | Parameters             |
 |--------|----------------------------|------------------------|
 | GET    | Get a list of active raids | {token: \<API token\>} |
 
 ### Pokemon Data
 
-#### ```/den_info```
+#### ```/api/pokemon/den_info```
 | Method | Description                                                      | Parameters                                          |
 |--------|------------------------------------------------------------------|-----------------------------------------------------|
 | GET    | Get what ability can be found in the Pokemon Max Raid Battle den | {token: \<API token\>, den: \<Pokemon den number\>} |
 
-#### ```/den_poke```
+#### ```/api/pokemon/den_poke```
 | Method | Description                                                         | Parameters                                     |
 |--------|---------------------------------------------------------------------|------------------------------------------------|
 | GET    | Get a list of Max Raid Battle dens that the Pokemon can be found in | {token: \<API token\>, name: \<Pokemon name\>} |
 
-#### ```/sprite```
+#### ```/api/pokemon/sprite```
 | Method | Description                                                         | Parameters                                     |
 |--------|---------------------------------------------------------------------|------------------------------------------------|
 | GET    | Get the ID of a Pokemon, which corresponds to the sprite's filename | {token: \<API token\>, name: \<Pokemon name\>} |
 
-#### ```/data```
+#### ```/api/pokemon/data```
 | Method | Description                                                         | Parameters                                   |
 |--------|---------------------------------------------------------------------|----------------------------------------------|
 | GET    | Get a list of Max Raid Battle dens that the Pokemon can be found in | {token: \<API token\>, name: <Pokemon name>} |
 
-#### ```/set```
+#### ```/api/pokemon/set```
 | Method | Description                                                                                    | Parameters                                                                                                                                                                  | Body                            |
 |--------|------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------|
 | GET    | Get a random Showdown/Smogon set (or all sets) for a Pokemon in a specific tier and generation | {token: \<API token\>, name: \<Pokemon name\>, tier: \<Smogon tier\>, gen: \<Pokemon generation number\>, size: \<either "one" or "all" to specify how many sets to send\>} | None                            |
 | POST   | Insert Showdown sets into a MongoDB collection                                                 | {token: \<API token\>}                                                                                                                                                      | JSON formatted array of objects |
 
-### ```/stats```
+### ```/api/pokemon/stats```
 | Method | Description                                                                             | Parameters                                                            |
 |--------|-----------------------------------------------------------------------------------------|-----------------------------------------------------------------------|
 | GET    | Get statistics on a Pokemon in a specific tier or get the rankings of Pokemon in a tier | {token: \<API token\>, name: \<Pokemon name\>, tier: \<Smogon tier\>} |
 
 ### Random Data
 
-#### ```/quote```
+#### ```/api/other/quote```
 | Method | Description        | Parameters             |
 |--------|--------------------|------------------------|
 | GET    | Get a random quote | {token: \<API token\>} |
 
-#### ```/dadjoke```
+#### ```/api/other/dadjoke```
 | Method | Description           | Parameters             |
 |--------|-----------------------|------------------------|
 | GET    | Get a random dad joke | {token: \<API token\>} |
