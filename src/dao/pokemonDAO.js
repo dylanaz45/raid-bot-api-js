@@ -1,6 +1,7 @@
 const { promisify } = require("util")
 const client = require("redis").createClient(process.env.REDIS_URL);
 const getAsync = promisify(client.get).bind(client);
+const dex = require("../common/pokemonSearch")
 
 Object.size = function(obj) {
     let size = 0, key;
@@ -62,6 +63,7 @@ class PokemonDAO {
             return JSON.parse(res)
         }
 
+        name = dex.search(name)
         let document = await db.collection("catch").findOne({
             name: name
         })

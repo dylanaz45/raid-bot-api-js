@@ -15,8 +15,7 @@ let tiersStats = [
     'ru',
     'ubers',
     'uu',
-    'vgc',
-    ''
+    'vgc'
 ]
 tiersStats = new Set(tiersStats)
 
@@ -34,7 +33,8 @@ let tiersSets = [
     'ubers',
     'uu',
     'vgc2020',
-    'zu'
+    'zu',
+    ''
 ]
 
 tiersSets = new Set(tiersSets)
@@ -207,13 +207,13 @@ class Pokemon {
         let input = {}
         let hasTier = false
         if (typeof req.query.tier === 'string' || req.query.tier instanceof String) {
-            if (tiersStats.has(req.query.tier.toLowerCase())) {
+            if (tiersSets.has(req.query.tier.toLowerCase())) {
                 input.tier = req.query.tier.toLowerCase()
                 hasTier = true
             }
         }
         if (!hasTier) {
-            input.tier = 'vgc'
+            input.tier = ''
         }
         input.filter = req.query.filter || ''
 

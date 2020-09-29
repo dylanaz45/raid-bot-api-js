@@ -67,7 +67,7 @@ be found in a den and what dens can a Pokemon be found in.
 | GET    | Get a random Showdown/Smogon set (or all sets) for a Pokemon in a specific tier and generation | {token: \<API token\>, name: \<Pokemon name\>, tier: \<Smogon tier\>, gen: \<Pokemon generation number\>, size: \<either "one" or "all" to specify how many sets to send\>} | None                            |
 | POST   | Insert Showdown sets into a MongoDB collection                                                 | {token: \<API token\>}                                                                                                                                                      | JSON formatted array of objects |
 
-### ```/api/pokemon/stats```
+#### ```/api/pokemon/stats```
 | Method | Description                                                                             | Parameters                                                            |
 |--------|-----------------------------------------------------------------------------------------|-----------------------------------------------------------------------|
 | GET    | Get statistics on a Pokemon in a specific tier or get the rankings of Pokemon in a tier | {token: \<API token\>, name: \<Pokemon name\>, tier: \<Smogon tier\>} |
