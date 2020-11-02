@@ -106,7 +106,7 @@ dist
 /.idea
 /tests/raid_bot_key.postman_environment.json
 /tests/raid_bot_heroku.postman_collection
-/data/sprites.json
+/data
 
 # Elastic Beanstalk Files
 .elasticbeanstalk/*

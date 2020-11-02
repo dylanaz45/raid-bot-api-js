@@ -2,6 +2,7 @@ const { promisify } = require("util")
 const client = require("redis").createClient(process.env.REDIS_URL);
 const getAsync = promisify(client.get).bind(client);
 const dex = require("../common/pokemonSearch")
+const data = require("../common/pokemonData")
 
 Object.size = function(obj) {
     let size = 0, key;
@@ -39,6 +40,7 @@ class PokemonDAO {
             return JSON.parse(res)
         }
 
+        name = dex.search(name, 2)
         let document = await db.collection("den_poke").findOne({
             name: name
         })
@@ -63,7 +65,7 @@ class PokemonDAO {
             return JSON.parse(res)
         }
 
-        name = dex.search(name)
+        name = dex.search(name, 1)
         let document = await db.collection("catch").findOne({
             name: name
         })
@@ -74,6 +76,15 @@ class PokemonDAO {
                 id: document.id
             }
             await client.set(name + "-sprite", JSON.stringify(ret), "EX", 60 * 20)
+            return ret
+        }
+    }
+
+    static async getData(userInput) {
+        let ret = data.getData(userInput)
+        if (typeof ret === 'undefined') {
+            return null
+        } else {
             return ret
         }
     }

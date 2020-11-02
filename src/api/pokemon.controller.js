@@ -123,7 +123,17 @@ class Pokemon {
      * Sends Pokemon related information about the requested object
      */
     static async data(req, res) {
-        res.status(200).send("data")
+        if (jwt.verifyToken(req.query.token) === false) {
+            res.status(401).send("Unauthorized")
+            return
+        }
+
+        let ret = await PokemonDAO.getData(req.query.name.toLowerCase())
+        if (ret) {
+            res.status(200).json(ret)
+        } else {
+            res.status(404).json({"0": "Requested item does not exist"});
+        }
     }
 
     /**

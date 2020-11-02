@@ -6032,6 +6032,34 @@ let BattleAbilities = {
     rating: 3,
     num: 259,
   },
+
+  transistor: {
+    name: 'Transistor',
+  },
+
+  dragonsmaw: {
+    name: "Dragon's Maw",
+  },
+
+  chillingneigh: {
+    name: "Chilling Neigh",
+  },
+
+  grimneigh: {
+    name: "Grim Neigh",
+  },
+
+  asoneglastrier: {
+    name: "As One (Glastrier)",
+  },
+
+  asonespectrier: {
+    name: "As One (Spectrier)",
+  },
+
+  curiousmedicine: {
+    name: "Curious Medicine",
+  },
 };
 
 exports.BattleAbilities = BattleAbilities;

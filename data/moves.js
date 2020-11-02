@@ -24045,4 +24045,36 @@ exports.BattleMovedex = {
     target: 'normal',
     type: 'Poison',
   },
+
+  thundercage: {
+    name: 'Thunder Cage',
+  },
+
+  fierywrath: {
+    name: 'Fiery Wrath',
+  },
+
+  dragonenergy: {
+    name: 'Dragon Energy',
+  },
+
+  freezingglare: {
+    name: 'Freezing Glare',
+  },
+
+  thunderouskick: {
+    name: 'Thunderous Kick',
+  },
+
+  glaciallance: {
+    name: 'Glacial Lance',
+  },
+
+  astralbarrage: {
+    name: 'Astral Barrage',
+  },
+
+  eeriespell: {
+    name: 'Eerie Spell',
+  },
 };

@@ -9,6 +9,7 @@ const index = require("./src/api/index")
 const user = require("./src/api/users.route")
 const raids = require("./src/api/raids.route")
 const pokemon = require("./src/api/pokemon.route")
+const usage = require("./src/api/usage.route")
 const other = require("./src/api/other.route")
 
 server.use(bodyParser.json());
@@ -18,7 +19,8 @@ server.use('/api', index);
 server.use('/api/user', user);
 server.use('/api/raids', raids);
 server.use('/api/pokemon', pokemon);
-server.use('/api/other', other)
+server.use('/api/usage', usage);
+server.use('/api/other', other);
 
 const port = process.env.PORT || 3000
 const options = {
@@ -33,6 +35,7 @@ MongoClient.connect(process.env.MONGO_URI, options, (err, db) => {
     }
 
     server.locals.db = db.db("discord")
+    server.locals.db_stats = db.db("smogon").collection("stats")
     server.listen(port, () => {
         console.log("Listening on port " + port)
     })
