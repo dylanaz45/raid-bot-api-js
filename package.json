@@ -23,7 +23,7 @@
   },
   "homepage": "https://github.com/dylanaz45/raid-bot-api-js#readme",
   "dependencies": {
-    "express": "^4.17.1",
+    "express": "^4.19.2",
     "dotenv": "^8.2.0",
     "mongodb": "^3.5.9",
     "jsonwebtoken": "^8.5.1",
